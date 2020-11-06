@@ -9,30 +9,52 @@ namespace NeuralNetwork
 {
     namespace Models
     {
-
-        public class BaseModel
+        public class BaseNetwork
         {
             // Base Model Class - All Inheritance from here
             public string _modelName;
-            public string _modelType = "BaseFeedForward";
-            public List<BaseLayer> _layers;
+            public string _modelType;
 
-            public BaseModel (string name)
+            private PointerLayer _headNode = new PointerLayer("HeadNode");
+            private PointerLayer _tailNode = new PointerLayer("TailNode");
+
+            public BaseNetwork (string name)
             {
                 // Constructor for BaseModel Class
                 this._modelName = name;
-                this._layers = new List<BaseLayer>();
+                this._modelType = "BaseNetworkType";
+
+                // Join Sentinel Nodes
+                this._headNode.NextLayer = _tailNode;
+                this._tailNode.PrevLayer = _headNode;
             }
 
+            public BaseNetwork AddTailLayer (BaseLayer newLayer)
+            {
+                // Add Layer to Tail of this Neural network
+                BaseLayer oldTail = _tailNode.PrevLayer;
+                oldTail.NextLayer = newLayer;
+                newLayer.PrevLayer = oldTail;
+                newLayer.NextLayer = _tailNode;
+                _tailNode.PrevLayer = newLayer;
+                return this;
+            }
+
+            public List<BaseLayer> GetLayers()
+            {
+                List<BaseLayer> layers = new List<BaseLayer>();
+                
+            }
 
         }
 
-        public class FeedForward
+        public class LinearNetwork : BaseNetwork
         {
 
-            public FeedForward()
+            public LinearNetwork(string name ): base(name)
             {
-
+                // Constructor for LinearNetwork Object
+                this._modelType = "LinearNetworkType";
             }
 
         }

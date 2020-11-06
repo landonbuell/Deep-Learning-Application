@@ -10,7 +10,10 @@ namespace LinkedTree
 
             DoubleTree GraphA = new DoubleTree("GraphA");
 
-            GraphA.AddTail(new TreeNode("A1"));
+            GraphA.AddTailNode(new TreeNode("A1"));
+            GraphA.AddTailNode(new TreeNode("A2"));
+
+            GraphA.AddNodeHead(new TreeNode("A0"));
 
             Console.WriteLine("Finished Graph A");
 

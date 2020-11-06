@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NeuralNetwork.Models;
+using System;
 
 namespace NeuralNetwork
 {
@@ -6,7 +7,7 @@ namespace NeuralNetwork
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            LinearNetwork NetworkA = new LinearNetwork("NetworkA");
         }
     }
 }

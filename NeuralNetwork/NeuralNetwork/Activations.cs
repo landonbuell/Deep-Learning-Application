@@ -6,9 +6,11 @@ namespace NeuralNetwork
 {
     namespace Activations
     {
-        public class IdentitiyActivation
+        public static class IdentitiyActivation
         {
             // Base ActivationFunction Class
+            
+
 
         }
     }

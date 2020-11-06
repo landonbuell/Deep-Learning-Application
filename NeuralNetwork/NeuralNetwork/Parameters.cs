@@ -5,15 +5,15 @@ using System.Text;
 namespace NeuralNetwork
 {
 
-    namespace Parameters
+    namespace LayerParameters
     {
-        public class BaseParameterArray
+        public class BaseLayerParameters
         {
             // All Weights/Biases are a parameter
             private bool _trainable;
             private int[] _shape;
 
-            public BaseParameterArray(int[] shape, bool trainable = true)
+            public BaseLayerParameters(int[] shape, bool trainable = true)
             {
                 this._shape = shape;
                 this._trainable = trainable;
@@ -24,18 +24,9 @@ namespace NeuralNetwork
             public bool IsTrainable() { return _trainable; }
         }
 
-        public class WeightArray : BaseParameterArray
-        {
-            public WeightArray (int[] shape, bool trainable = true) : base(shape, trainable)
-            {
-                // Constructor Method of Weight Array Class
-            }
-        }
+        
 
-        public class BiasArray : BaseParameterArray
-        {
-
-        }
+        
         
     }
     

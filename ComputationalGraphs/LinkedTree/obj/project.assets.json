@@ -8,8 +8,7 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Landon\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Landon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -20,9 +19,6 @@
       "packagesPath": "C:\\Users\\Landon\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedTree\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\Landon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

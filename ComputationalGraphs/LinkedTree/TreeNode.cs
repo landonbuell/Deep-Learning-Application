@@ -33,6 +33,7 @@ namespace LinkedTree
 
         public List<TreeNode> PrevNodesList
         {
+            // Get & Set Previous Nodes
             get { return _prev; }
             set { _prev = value; }
         }
@@ -53,16 +54,28 @@ namespace LinkedTree
         {
             // Add Add Node After this Node
             _next.Add(newNode);
-            
+            newNode._prev.Add(this);           
+        }
 
+        public void AddPrev(TreeNode newNode)
+        {
+            // Add Add Node After this Node
+            _prev.Add(newNode);
+            newNode._next.Add(this);
         }
 
         public void InsertNext(TreeNode newNode)
         {
             // Insert newNode after this node, 
-            // Pushes all previous nodes down one level
+            // Pushes all next nodes nodes down one level
+            newNode.NextNodesList = _next;
 
+        }
 
+        public void InsetPrev (TreeNode newNode)
+        {
+            // Insert newNode before this node, 
+            // Pushes all prev nodes up one level
         }
 
         public void ReplaceNext (TreeNode newNode)
@@ -70,8 +83,27 @@ namespace LinkedTree
 
         }
 
+        public void ReplacePrev(TreeNode newNode)
+        {
 
-       
+        }
+
+        public List<TreeNode> RemoveNext (TreeNode remNode)
+        {
+            // Remove Node Instance from _next & return _next
+            try { _next.Remove(remNode); }
+            catch { }
+            return _next;
+        }
+
+        public List<TreeNode> RemovePrev(TreeNode remNode)
+        {
+            // Remove Node Instance from _next & return _next
+            try { _prev.Remove(remNode); }
+            catch { }
+            return _prev;
+        }
+
         public TreeNode RemoveAllConnections()
         {
             // Reset this node to contain Only Data
