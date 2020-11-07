@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -18,28 +19,32 @@ namespace NeuralNetwork
             public int _layerIndex;
             public string _layerType;
 
-            private BaseLayerParameters _weights;
-            private BaseLayerParameters _biases;
+            private LayerParameters _layerParams;
+            private LayerActivations _layerActivations;
+            private Activation _activationFunction;
 
             protected int[] _inputShape;
             protected int[] _outputShape;
             protected int[] _activationShape;
+            
             protected int batchSize;
             
             private BaseLayer _nextLayer;
             private BaseLayer _prevLayer;
-            
 
             public BaseLayer(string name)
             {
                 // Constructor for BaseLayer Class
                 _layerType = "BaseLayer";
                 _layerName = name;
+            }
 
-                // Set Supproting Data
-                try { _layerIndex = PrevLayer._layerIndex + 1; }
-                catch { _layerIndex = 0; }
-                
+            public BaseLayer(string name, Activation actFunc )
+            {
+                // Constructor for BaseLayer Class
+                _layerType = "BaseLayer";
+                _layerName = name;
+                _activationFunction = actFunc;
             }
 
             public BaseLayer NextLayer
@@ -47,13 +52,14 @@ namespace NeuralNetwork
                 // Get or Set Next Layer
                 get { return _nextLayer; }
                 set { _nextLayer = value; }
+                    
             }
 
             public BaseLayer PrevLayer
             {
                 // Get or Set Previous Layer
                 get { return _prevLayer; }
-                set { _prevLayer = value; }
+                set { _prevLayer = value;}
             }
 
             public int[] InputShape 
@@ -62,6 +68,7 @@ namespace NeuralNetwork
                 get { return _inputShape; }
                 set { _inputShape = value; }
             }
+
             public int[] OutputShape
             {
                 // Get or set input Shape
@@ -69,32 +76,32 @@ namespace NeuralNetwork
                 set { _outputShape = value; }
             }
 
-            public double[,] Call (double[,] X)
+            public virtual void FormatLayerParams()
             {
-                // Call Layer w/ Input X
-                return X;
+                // Format The Layer Params Object
+                // No Parameters to Format in BaseLayer Type
             }
 
-
+            public static LayerActivations Call (LayerActivations X)
+            {
+                // Call BaseLayer 
+                return X;
+            }
         }
 
         public class PointerLayer : BaseLayer
         {
-            // Pointer Layer Does Nothing!
-            // Only Points to another layer
+            // Pointer Layer Only Points to another layer
             // Is used as Head/Tail Nodes in Layer Graph
 
             public PointerLayer (string name) : base(name)
             {
                 // Constructor for PointerLayer
-                _layerType = "Pointer";
+                _layerType = "PointerLayer";
                 NextLayer = null;
                 PrevLayer = null;
-
-                // Set Other properties
-                
-
             }
+
         }
 
         public class InputLayer : BaseLayer
@@ -102,11 +109,12 @@ namespace NeuralNetwork
             public InputLayer (string name, int[] inputShape) : base(name)
             {
                 // Constructor for Input Layer
-                _layerType = "Input";
+                _layerType = "Inputlayer";
                 _inputShape = inputShape;
                 _outputShape = inputShape;
                 _activationShape = inputShape;
 
+                // No weights or activations for this layer Type (null)
             }
         }
 
@@ -115,7 +123,14 @@ namespace NeuralNetwork
             public OutputLayer(string name, int nodes) : base(name, nodes)
             {
                 // Constructor for Input Layer
-                _layerType = "Output";
+                _layerType = "OutputLayer";
+
+            }
+
+            public OutputLayer(string name, int nodes, Activation actFunc) : base(name, nodes, actFunc)
+            {
+                // Constructor for Input Layer
+                _layerType = "OutputLayer";
 
             }
         }
@@ -130,8 +145,29 @@ namespace NeuralNetwork
                 Nodes = nodes;
                 
             }
+            public LinearDense(string name, int nodes, Activation actFunc) : base(name, actFunc)
+            {
+                // Constructor for Linear Dense Layer Class
+                _layerType = "LinearDense";
+                Nodes = nodes;
+
+            }
 
             public int Nodes { get; set; }
+
+            public override void FormatLayerParams()
+            {
+                int[] prevOutputShape = PrevLayer.OutputShape;
+
+            }
+
+            public override LayerActivations Call (LayerActivations X )
+            {
+                // Call LinearDenseLayer
+
+                return X;
+            }
+
         }
 
     }

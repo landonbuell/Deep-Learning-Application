@@ -16,8 +16,11 @@ namespace NeuralNetwork
             
             NetworkA.AddLayer(new LinearDense("Dense1", 8));
             NetworkA.AddLayer(new LinearDense("Dense2", 16));
+            NetworkA.AddLayer(new LinearDense("Dense3", 10));
 
             NetworkA.AddLayer(new OutputLayer("Output", 2));
+
+            NetworkA.AssembleModel();
 
             Console.WriteLine("=)");
 
