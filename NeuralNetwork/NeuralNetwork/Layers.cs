@@ -4,25 +4,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using NeuralNetwork.ActivationFunctions;
 using NeuralNetwork.LayerUtilities;
 
 
 namespace NeuralNetwork
 {
     namespace Layers
-    {
-        
+    {    
         public class BaseLayer
         {
             public string _layerName;
             public int _layerIndex;
             public string _layerType;
 
-            private LayerParameters _layerParams;
-            private LayerActivations _layerActivations;
-            private Activation _activationFunction;
-
+            protected LayerParameters _layerParams;
+            protected Initializer _layerParamsInit;
+            protected LayerActivations _layerActivations;
+            protected Activation _layerActFunc;
+            
             protected int[] _inputShape;
             protected int[] _outputShape;
             protected int[] _activationShape;
@@ -39,20 +38,20 @@ namespace NeuralNetwork
                 _layerName = name;
             }
 
-            public BaseLayer(string name, Activation actFunc )
+            public BaseLayer(string name, string actFuncStr = " ", string initStr = " ")
             {
                 // Constructor for BaseLayer Class
                 _layerType = "BaseLayer";
                 _layerName = name;
-                _activationFunction = actFunc;
+                _layerActFunc = LayerUtilitiesMap.ActFuncMap[actFuncStr];
+                _layerParamsInit = LayerUtilitiesMap.InitializerMap[initStr];
             }
 
             public BaseLayer NextLayer
             {
                 // Get or Set Next Layer
                 get { return _nextLayer; }
-                set { _nextLayer = value; }
-                    
+                set { _nextLayer = value; }                   
             }
 
             public BaseLayer PrevLayer
@@ -84,7 +83,7 @@ namespace NeuralNetwork
 
             public static LayerActivations Call (LayerActivations X)
             {
-                // Call BaseLayer 
+                // Call BaseLayer w/ Inputs X   
                 return X;
             }
         }
@@ -135,7 +134,6 @@ namespace NeuralNetwork
             }
         }
 
-
         public class LinearDense : BaseLayer
         {
             public LinearDense(string name, int nodes) : base(name)
@@ -145,7 +143,8 @@ namespace NeuralNetwork
                 Nodes = nodes;
                 
             }
-            public LinearDense(string name, int nodes, Activation actFunc) : base(name, actFunc)
+            public LinearDense(string name, int nodes, string actFuncStr = " ", string initParamStr = " ") : 
+                base(name, actFuncStr, initParamStr)
             {
                 // Constructor for Linear Dense Layer Class
                 _layerType = "LinearDense";
@@ -157,16 +156,13 @@ namespace NeuralNetwork
 
             public override void FormatLayerParams()
             {
-                int[] prevOutputShape = PrevLayer.OutputShape;
+                // Initialize Weights & Biases
+                _inputShape = PrevLayer.OutputShape;
+                _layerParams.Initialize(_inputShape,Nodes,_layerParamsInit);
 
             }
 
-            public override LayerActivations Call (LayerActivations X )
-            {
-                // Call LinearDenseLayer
-
-                return X;
-            }
+    
 
         }
 
