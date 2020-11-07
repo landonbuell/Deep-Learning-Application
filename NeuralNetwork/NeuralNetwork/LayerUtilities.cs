@@ -5,7 +5,7 @@ using System.Text;
 namespace NeuralNetwork
 {
 
-    namespace LayerParameters
+    namespace LayerUtilities
     {
         public class BaseLayerParameters
         {
@@ -24,10 +24,11 @@ namespace NeuralNetwork
             public bool IsTrainable() { return _trainable; }
         }
 
-        
+        public class BaseActivationArray
+        {
+            // Hold Activation objects
+        }
 
-        
-        
     }
-    
+
 }

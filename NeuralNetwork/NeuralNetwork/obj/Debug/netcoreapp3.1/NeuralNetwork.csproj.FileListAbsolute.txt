@@ -1,0 +1,13 @@
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.csprojAssemblyReference.cache
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.AssemblyInfoInputs.cache
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.AssemblyInfo.cs
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.csproj.CoreCompileInputs.cache
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.exe
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.deps.json
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.runtimeconfig.json
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.runtimeconfig.dev.json
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.dll
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\bin\Debug\netcoreapp3.1\NeuralNetwork.pdb
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.dll
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.pdb
+C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\NeuralNetwork\NeuralNetwork\obj\Debug\netcoreapp3.1\NeuralNetwork.genruntimeconfig.cache

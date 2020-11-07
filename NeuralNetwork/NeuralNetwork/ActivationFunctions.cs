@@ -4,13 +4,13 @@ using System.Text;
 
 namespace NeuralNetwork
 {
-    namespace Activations
+    namespace ActivationFunctions
     {
         public static class IdentitiyActivation
         {
             // Base ActivationFunction Class
             
-
+            
 
         }
     }

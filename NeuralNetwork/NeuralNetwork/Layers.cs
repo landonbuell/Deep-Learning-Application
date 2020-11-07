@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using NeuralNetwork.Activations;
-using NeuralNetwork.LayerParameters;
+using NeuralNetwork.ActivationFunctions;
+using NeuralNetwork.LayerUtilities;
+
 
 namespace NeuralNetwork
 {
@@ -20,8 +21,11 @@ namespace NeuralNetwork
             private BaseLayerParameters _weights;
             private BaseLayerParameters _biases;
 
-            private int[] _inputShape = new int[] { 0, 0 };
-            private int[] _outputShape;
+            protected int[] _inputShape;
+            protected int[] _outputShape;
+            protected int[] _activationShape;
+            protected int batchSize;
+            
             private BaseLayer _nextLayer;
             private BaseLayer _prevLayer;
             
@@ -30,6 +34,12 @@ namespace NeuralNetwork
             {
                 // Constructor for BaseLayer Class
                 _layerType = "BaseLayer";
+                _layerName = name;
+
+                // Set Supproting Data
+                try { _layerIndex = PrevLayer._layerIndex + 1; }
+                catch { _layerIndex = 0; }
+                
             }
 
             public BaseLayer NextLayer
@@ -80,15 +90,32 @@ namespace NeuralNetwork
                 _layerType = "Pointer";
                 NextLayer = null;
                 PrevLayer = null;
+
+                // Set Other properties
+                
+
             }
         }
 
         public class InputLayer : BaseLayer
         {
-            public InputLayer (string name) : base(name)
+            public InputLayer (string name, int[] inputShape) : base(name)
             {
                 // Constructor for Input Layer
                 _layerType = "Input";
+                _inputShape = inputShape;
+                _outputShape = inputShape;
+                _activationShape = inputShape;
+
+            }
+        }
+
+        public class OutputLayer : LinearDense
+        {
+            public OutputLayer(string name, int nodes) : base(name, nodes)
+            {
+                // Constructor for Input Layer
+                _layerType = "Output";
 
             }
         }
@@ -101,7 +128,7 @@ namespace NeuralNetwork
                 // Constructor for Linear Dense Layer Class
                 _layerType = "LinearDense";
                 Nodes = nodes;
-
+                
             }
 
             public int Nodes { get; set; }

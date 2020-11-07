@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using NeuralNetwork.Layers;
-using NeuralNetwork.Parameters;
+using NeuralNetwork.LayerUtilities;
 
 namespace NeuralNetwork
 {
@@ -28,8 +28,10 @@ namespace NeuralNetwork
                 this._headNode.NextLayer = _tailNode;
                 this._tailNode.PrevLayer = _headNode;
             }
+            
+            public int BatchSize { get; set; }
 
-            public BaseNetwork AddTailLayer (BaseLayer newLayer)
+            public BaseNetwork AddLayer (BaseLayer newLayer)
             {
                 // Add Layer to Tail of this Neural network
                 BaseLayer oldTail = _tailNode.PrevLayer;
@@ -43,9 +45,15 @@ namespace NeuralNetwork
             public List<BaseLayer> GetLayers()
             {
                 List<BaseLayer> layers = new List<BaseLayer>();
-                
+                BaseLayer currentLayer = _headNode.NextLayer;
+                while (currentLayer.NextLayer != _tailNode)
+                {
+                    // Not at the end of the graph
+                    layers.Add(currentLayer);
+                    currentLayer = currentLayer.NextLayer;
+                }
+                return layers;               
             }
-
         }
 
         public class LinearNetwork : BaseNetwork

@@ -1,5 +1,8 @@
-﻿using NeuralNetwork.Models;
+﻿
 using System;
+
+using NeuralNetwork.Models;
+using NeuralNetwork.Layers;
 
 namespace NeuralNetwork
 {
@@ -8,6 +11,16 @@ namespace NeuralNetwork
         static void Main(string[] args)
         {
             LinearNetwork NetworkA = new LinearNetwork("NetworkA");
+
+            NetworkA.AddLayer(new InputLayer("Input", new int[] {1,12}));
+            
+            NetworkA.AddLayer(new LinearDense("Dense1", 8));
+            NetworkA.AddLayer(new LinearDense("Dense2", 16));
+
+            NetworkA.AddLayer(new OutputLayer("Output", 2));
+
+            Console.WriteLine("=)");
+
         }
     }
 }
