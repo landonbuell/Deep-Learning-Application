@@ -7,10 +7,8 @@ using NeuralNetwork.LayerUtilities;
 
 namespace NeuralNetwork
 {
-
     namespace DoubleLinkedGraphs
     {
-
         public class ComputationalGraph
         {
             private PointerLayer _headNode = new PointerLayer("HeadNode");
@@ -18,50 +16,67 @@ namespace NeuralNetwork
 
             public ComputationalGraph()
             {
-                // Constructor for Computational Graph with no Args
+                // Constructor for Computational Graph (Empty)
                 _headNode.NextLayer = _tailNode;
                 _tailNode.PrevLayer = _headNode;
             }
             
+            public ComputationalGraph(BaseLayer existingLayer)
+            {
+                // Constructor for Computational Graph (One Node)
+                _headNode.NextLayer = _tailNode;
+                _tailNode.PrevLayer = _headNode;
+                AddTailNode(existingLayer);
+            }
+
+            public ComputationalGraph(List<BaseLayer> existingLayers)
+            {
+                // Constructor for Computational Graph (List of Nodes)
+                _headNode.NextLayer = _tailNode;
+                _tailNode.PrevLayer = _headNode;
+                for (int i = 0; i < existingLayers.Count; i++)
+                    AddTailNode(existingLayers[i]);
+            }
+
+            public ComputationalGraph(ComputationalGraph exisitngGraph)
+            {
+                // Constructor for Computational Graph (Wxisitng Graph)
+                _headNode.NextLayer = _tailNode;
+                _tailNode.PrevLayer = _headNode;
+                // Convert to layer list, add in order
+                List<BaseLayer> existingLayers = exisitngGraph.GetGraphList;
+                for (int i = 0; i < existingLayers.Count; i++)
+                    AddTailNode(existingLayers[i]);
+            }
+
             public BaseLayer GetHead { get { return _headNode; } }
 
             public BaseLayer GetTail { get { return _tailNode; } }
 
-            public ComputationalGraph(BaseLayer newLayer)
-            {
-                // Constructor for Computational Graph with Exisitng Layer
-                _headNode.NextLayer = _tailNode;
-                _tailNode.PrevLayer = _headNode;
-                AddTailNode(newLayer);
-            }
-
-            public ComputationalGraph(ComputationalGraph newGraph)
-            {
-                // Constructor for Computational Graph with Exisitng Graph
-                _headNode.NextLayer = _tailNode;
-                _tailNode.PrevLayer = _headNode;
-            }
-
-            public void AddTailNode (BaseLayer newNode)
+            public void AddTailNode (BaseLayer newLayer)
             {
                 // Add newNode to end of Compuational Graph
                 BaseLayer oldTail = _tailNode.PrevLayer;
-                oldTail.NextLayer = newNode;
-                _tailNode.PrevLayer = newNode;
-                newNode.PrevLayer = oldTail;
-                newNode.NextLayer = _tailNode;
-                SetLayerCounter(newNode);
+                oldTail.NextLayer = newLayer;
+                _tailNode.PrevLayer = newLayer;
+                newLayer.PrevLayer = oldTail;
+                newLayer.NextLayer = _tailNode;
+
+                // Format the Layer to match other layers
+                SetLayerCounter(newLayer);
             }
 
-            public void AddHeadNode (BaseLayer newNode)
+            public void AddHeadNode (BaseLayer newLayer)
             {
                 // Add newNode to top of Computational Graph
                 BaseLayer oldHead = _headNode.NextLayer;
-                oldHead.PrevLayer = newNode;
-                _headNode.NextLayer = newNode;
-                newNode.NextLayer = oldHead;
-                newNode.PrevLayer = _headNode;
-                SetLayerCounter(newNode);
+                oldHead.PrevLayer = newLayer;
+                _headNode.NextLayer = newLayer;
+                newLayer.NextLayer = oldHead;
+                newLayer.PrevLayer = _headNode;
+
+                // Format the Layer to Match other Layers
+                SetLayerCounter(newLayer);
             }
 
             public BaseLayer RemoveAtIndex (int index = -1)

@@ -7,6 +7,7 @@ using NeuralNetwork.Layers;
 using NeuralNetwork.LayerUtilities;
 using NeuralNetwork.DoubleLinkedGraphs;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace NeuralNetwork
 {
@@ -17,31 +18,62 @@ namespace NeuralNetwork
             // Base Model Class - All Inheritance from here
             public string _modelName;
             public string _modelType;
-            protected int _layerCounter = 0;
-            protected bool _isAssembled = false;
+            protected int _layerCounter;
+            protected bool _isAssembled;
 
             protected List<BaseLayer> _layerList;
             protected ComputationalGraph _layerGraph;
-            
 
             public BaseNetwork(string name)
             {
-                // Constructor for BaseModel Class
+                // Constructor for BaseModel Class (Empty)
                 this._modelName = name;
                 this._modelType = "BaseNetworkType";
-                this._layerGraph = new ComputationalGraph();
+                this._layerCounter = 0;
+                this._isAssembled = false;
 
-                // Init Layer List & Graph
-                _layerList = new List<BaseLayer>();                           
+                // Intialize Graph & layer List for this Model
+                this._layerGraph = new ComputationalGraph();
+                this._layerList = new List<BaseLayer>();
             }
 
-            public int BatchSize { get; set; }
+            public BaseNetwork(string name, ComputationalGraph existingGraph)
+            {
+                // Constructor for BaseModel Class (given Graph)
+                this._modelName = name;
+                this._modelType = "BaseNetworkType";
+                this._isAssembled = false;
+
+                // Intialize Graph & layer List for this Model
+                this._layerGraph = existingGraph;
+                this._layerList = existingGraph.GetGraphList;
+                this._layerCounter = _layerList.Count;
+            }
+
+            public BaseNetwork(string name, List<BaseLayer> exisitingLayers)
+            {
+                // Constructor for BaseModel Class (given Layers)
+                this._modelName = name;
+                this._modelType = "BaseNetworkType";
+                this._isAssembled = false;
+
+                // Intialize Graph & layer List for this Model
+                this._layerGraph = new ComputationalGraph(exisitingLayers);
+                this._layerList = _layerGraph.GetGraphList;
+                this._layerCounter = _layerList.Count;
+            }
+
+            public List<BaseLayer> GetLayerList 
+            { 
+                get { return _layerGraph.GetGraphList; }
+            }
 
             public BaseNetwork AddLayer(BaseLayer newLayer)
             {
-                // Add New Layer to the Tail of Graph & List
+                // Add New Layer to the Tail of Graph 
                 _layerGraph.AddTailNode(newLayer);
-                _layerList.Add(newLayer);               
+                newLayer.FormatLayerParams();
+                _layerList = _layerGraph.GetGraphList;
                 _layerCounter = _layerList.Count;
                 return this;
             }
@@ -49,11 +81,7 @@ namespace NeuralNetwork
             public BaseLayer PopLayer(int index = -1)
             {
                 // Remove Layer At Index
-                if (index > _layerCounter)
-                    throw new ArgumentOutOfRangeException()
-                // Remove from Graph              
-                BaseLayer victimLayer = _layerGraph.RemoveAtIndex(index)
-                return victimLayer;
+                throw new NotImplementedException();
             }
 
             private void FormatLayerParams()
@@ -68,23 +96,22 @@ namespace NeuralNetwork
                 }
 
             }
+           
+            public BaseNetwork AssembleModel()
+            {
+                // Prepare this Model for Usage
+                throw new NotImplementedException();
+                
+                _isAssembled = true;
+                return this;
+            }
 
             public void ModelSummary()
             {
                 // Print Summary of this Model's Layers and Parameters
-                
+
             }
 
-            public BaseNetwork AssembleModel()
-            {
-                // Prepare this Model for Usage
-                BatchSize = _layerList[0].InputShape[0];
-                
-
-
-                _isAssembled = true;
-                return this;
-            }
 
         }
 

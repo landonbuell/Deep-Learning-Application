@@ -19,8 +19,13 @@ namespace NeuralNetwork
         public class Initializer
         {
             // Initializer Class to Initialize Layer Params
+            private int[] _weightsShape;
+            private int[] _biasesShape;
 
-            
+            public Initializer()
+            {
+                // Constructor For Base intialize Class
+            }
 
 
         }

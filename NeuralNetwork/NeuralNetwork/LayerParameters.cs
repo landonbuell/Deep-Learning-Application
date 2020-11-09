@@ -25,7 +25,7 @@ namespace NeuralNetwork
             }
 
 
-            public virtual void Initialize (int[] inputShape, int nodes)
+            public virtual void Initialize (int[] inputShape, int[] outputShape)
             {
                 // Initialize These Parameters
             }
@@ -44,16 +44,15 @@ namespace NeuralNetwork
                 // Initialize LinearDenseParameters Instance
             }
 
-            public override void Initialize (int[] inputShape, int nodes)
+            public override void Initialize (int[] inputShape, int[] outputShape)
             {
                 // Initialize Parameters in Dense Layer
-                _weightShape = new int[] { nodes, inputShape[0]};
-                _biasShape = new int[] { nodes, 1 };
-
+                _weightShape = new int[] { outputShape[0] , inputShape[0]};
+                _biasShape = new int[] { outputShape[0] , 1 };
+                
+                // Use Initializer Instance to Generate Weights & baises
 
             }
-
-            
 
         }
 

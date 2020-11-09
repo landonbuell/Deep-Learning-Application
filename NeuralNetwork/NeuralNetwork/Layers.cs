@@ -17,9 +17,9 @@ namespace NeuralNetwork
             public int _layerIndex;
             public string _layerType;
 
-            protected LayerParameters _layerParams;
-            protected Initializer _layerParamsInit;
             protected LayerActivations _layerActivations;
+            protected Initializer _layerParamsInit;
+            protected LayerParameters _layerParams;
             protected Activation _layerActFunc;
             
             protected int[] _inputShape;
@@ -33,18 +33,19 @@ namespace NeuralNetwork
 
             public BaseLayer(string name)
             {
-                // Constructor for BaseLayer Class
-                _layerType = "BaseLayer";
+                // Constructor for BaseLayer Class (Given only name)
                 _layerName = name;
+                _layerType = "BaseLayer";
+                
             }
 
-            public BaseLayer(string name, string actFuncStr = " ", string initStr = " ")
+            public BaseLayer (string name, Activation actFunc, Initializer paramsIntializer)
             {
-                // Constructor for BaseLayer Class
-                _layerType = "BaseLayer";
+                // Constructor for BaseLayer Class (Given only name)
                 _layerName = name;
-                _layerActFunc = LayerUtilitiesMap.ActFuncMap[actFuncStr];
-                _layerParamsInit = LayerUtilitiesMap.InitializerMap[initStr];
+                _layerType = "BaseLayer";
+
+                // Set Activation Function & Parameter Intializer
             }
 
             public BaseLayer NextLayer
@@ -63,22 +64,36 @@ namespace NeuralNetwork
 
             public int[] InputShape 
             {
-                // Get or set input Shape
+                // Get or set input array shape
                 get { return _inputShape; }
                 set { _inputShape = value; }
             }
 
             public int[] OutputShape
             {
-                // Get or set input Shape
+                // Get or set output array shape
                 get { return _outputShape; }
                 set { _outputShape = value; }
+            }
+
+            public int[] ActivationShape
+            {
+                // Get or Set activation array shape
+                get { return _activationShape; }
+                set { _activationShape = value; }
             }
 
             public virtual void FormatLayerParams()
             {
                 // Format The Layer Params Object
                 // No Parameters to Format in BaseLayer Type
+                // Called when Layer is added to a Computational graph
+            }
+
+            public virtual LayerParameters GetLayerParams()
+            {
+                // get the Layer Params Object
+                return _layerParams;
             }
 
             public static LayerActivations Call (LayerActivations X)
@@ -126,12 +141,6 @@ namespace NeuralNetwork
 
             }
 
-            public OutputLayer(string name, int nodes, Activation actFunc) : base(name, nodes, actFunc)
-            {
-                // Constructor for Input Layer
-                _layerType = "OutputLayer";
-
-            }
         }
 
         public class LinearDense : BaseLayer
@@ -143,22 +152,19 @@ namespace NeuralNetwork
                 Nodes = nodes;
                 
             }
-            public LinearDense(string name, int nodes, string actFuncStr = " ", string initParamStr = " ") : 
-                base(name, actFuncStr, initParamStr)
-            {
-                // Constructor for Linear Dense Layer Class
-                _layerType = "LinearDense";
-                Nodes = nodes;
-
-            }
 
             public int Nodes { get; set; }
 
             public override void FormatLayerParams()
             {
-                // Initialize Weights & Biases
+                // Set Shapes for This Layer
                 _inputShape = PrevLayer.OutputShape;
-                _layerParams.Initialize(_inputShape,Nodes,_layerParamsInit);
+                _outputShape = new int[] { Nodes, _inputShape[1] };
+                _activationShape = _outputShape;
+
+                // Send shape to Paramaters Object
+                _layerParams = new LinearDenseParameters(_layerParamsInit,true);
+                _layerParams.Initialize(_inputShape, _outputShape);
 
             }
 

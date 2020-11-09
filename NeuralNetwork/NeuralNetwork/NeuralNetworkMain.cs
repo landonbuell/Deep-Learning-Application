@@ -3,6 +3,7 @@ using System;
 
 using NeuralNetwork.Models;
 using NeuralNetwork.Layers;
+using System.Collections.Generic;
 
 namespace NeuralNetwork
 {
@@ -12,15 +13,14 @@ namespace NeuralNetwork
         {
             LinearNetwork NetworkA = new LinearNetwork("NetworkA");
 
-            NetworkA.AddLayer(new InputLayer("Input", new int[] {1,12}));
+            NetworkA.AddLayer(new InputLayer("Input", new int[] {4,1}));
             
             NetworkA.AddLayer(new LinearDense("Dense1", 8));
-            NetworkA.AddLayer(new LinearDense("Dense2", 16));
-            NetworkA.AddLayer(new LinearDense("Dense3", 10));
+            NetworkA.AddLayer(new LinearDense("Dense2", 10));
 
             NetworkA.AddLayer(new OutputLayer("Output", 2));
 
-            NetworkA.AssembleModel();
+            List<BaseLayer> NetworkALayers = NetworkA.GetLayerList;
 
             Console.WriteLine("=)");
 
