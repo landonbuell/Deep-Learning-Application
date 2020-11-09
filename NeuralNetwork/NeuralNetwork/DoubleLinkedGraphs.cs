@@ -50,6 +50,7 @@ namespace NeuralNetwork
                 _tailNode.PrevLayer = newNode;
                 newNode.PrevLayer = oldTail;
                 newNode.NextLayer = _tailNode;
+                SetLayerCounter(newNode);
             }
 
             public void AddHeadNode (BaseLayer newNode)
@@ -60,11 +61,51 @@ namespace NeuralNetwork
                 _headNode.NextLayer = newNode;
                 newNode.NextLayer = oldHead;
                 newNode.PrevLayer = _headNode;
+                SetLayerCounter(newNode);
             }
 
+            public BaseLayer RemoveAtIndex (int index = -1)
+            {
+                // Remove node at Graph Index
+                BaseLayer currentLayer = _headNode.NextLayer;
+                for (int i = 0; i < index; i++)
+                    currentLayer = currentLayer.NextLayer;
+                BaseLayer oldPrev = currentLayer.PrevLayer;
+                BaseLayer oldNext = currentLayer.NextLayer;
+                oldPrev.NextLayer = oldNext;
+                oldNext.PrevLayer = oldPrev;
+                return currentLayer;                
+            }
 
+            private void SetLayerCounter(BaseLayer currentLayer)
+            {
+                // Set Index on current Layer   
+                try
+                {
+                    int prevLayerIndex = currentLayer.PrevLayer._layerIndex;
+                    currentLayer._layerIndex = prevLayerIndex + 1;
+                }
+                catch
+                {
+                    currentLayer._layerIndex = 0;
+                }
+            }
 
+            public List<BaseLayer> GetGraphList
+            {
+                get
+                {
+                    // Get This Graph as a List
+                    List<BaseLayer> graphList = new List<BaseLayer>();
+                    BaseLayer currentLayer = _headNode.NextLayer;
+                    while (currentLayer != _tailNode)
+                    {
+                        graphList.Add(currentLayer);
+                        currentLayer = currentLayer.NextLayer;
+                    }
+                    return graphList;
+                }
+            }
         }
-    }
-    
+    }  
 }

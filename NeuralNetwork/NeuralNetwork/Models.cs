@@ -29,6 +29,7 @@ namespace NeuralNetwork
                 // Constructor for BaseModel Class
                 this._modelName = name;
                 this._modelType = "BaseNetworkType";
+                this._layerGraph = new ComputationalGraph();
 
                 // Init Layer List & Graph
                 _layerList = new List<BaseLayer>();                           
@@ -38,10 +39,10 @@ namespace NeuralNetwork
 
             public BaseNetwork AddLayer(BaseLayer newLayer)
             {
-                // Add New Layer to the Tail of the Neural network
-                _layerList.Add(newLayer);
+                // Add New Layer to the Tail of Graph & List
+                _layerGraph.AddTailNode(newLayer);
+                _layerList.Add(newLayer);               
                 _layerCounter = _layerList.Count;
-                newLayer._layerIndex = _layerCounter - 1;
                 return this;
             }
 
@@ -49,24 +50,10 @@ namespace NeuralNetwork
             {
                 // Remove Layer At Index
                 if (index > _layerCounter)
-                    throw new ArgumentOutOfRangeException();
-                BaseLayer victimLayer = _layerList[index];
-                _layerList.RemoveAt(index);
-                _layerCounter = _layerList.Count;
-                for (int i = 0; i < _layerCounter; i++)
-                    _layerList[i]._layerIndex = i;
+                    throw new ArgumentOutOfRangeException()
+                // Remove from Graph              
+                BaseLayer victimLayer = _layerGraph.RemoveAtIndex(index)
                 return victimLayer;
-            }
-
-            private void BuildGraph()
-            {
-                // Build Computational Graph of Layers
-                _layerGraph = new ComputationalGraph();
-                for (int i=0; i < _layerCounter; i++)
-                {
-                    // Add Each layer to Grap & Connect Nodes
-                    _layerGraph.AddTailNode(_layerList[i]);
-                }
             }
 
             private void FormatLayerParams()
@@ -92,7 +79,7 @@ namespace NeuralNetwork
             {
                 // Prepare this Model for Usage
                 BatchSize = _layerList[0].InputShape[0];
-                BuildGraph();
+                
 
 
                 _isAssembled = true;
