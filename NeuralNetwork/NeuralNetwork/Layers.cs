@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -120,15 +121,25 @@ namespace NeuralNetwork
 
         public class InputLayer : BaseLayer
         {
-            public InputLayer (string name, int[] inputShape) : base(name)
+            public InputLayer (string name, int[] sampleShape , int batchSize = 1) : base(name)
             {
                 // Constructor for Input Layer
                 _layerType = "Inputlayer";
-                _inputShape = inputShape;
-                _outputShape = inputShape;
-                _activationShape = inputShape;
+
+                _inputShape = new int[1 + sampleShape.Length];
+                _inputShape[0] = batchSize;
+                sampleShape.CopyTo(_inputShape, 1);
+                _activationShape = _inputShape;
+                _outputShape = _inputShape;
 
                 // No weights or activations for this layer Type (null)
+            }
+
+            public override void FormatLayerParams()
+            {
+                // Set Shapes for This Layer
+                
+
             }
         }
 

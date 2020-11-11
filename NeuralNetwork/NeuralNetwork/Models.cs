@@ -8,6 +8,8 @@ using NeuralNetwork.LayerUtilities;
 using NeuralNetwork.DoubleLinkedGraphs;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using NeuralNetwork.Optimizers;
+using NeuralNetwork.ObjectiveFunctions;
 
 namespace NeuralNetwork
 {
@@ -20,9 +22,13 @@ namespace NeuralNetwork
             public string _modelType;
             protected int _layerCounter;
             protected bool _isAssembled;
+            protected int _batchSize;
 
             protected List<BaseLayer> _layerList;
             protected ComputationalGraph _layerGraph;
+
+            protected BaseOptimizer _Optimizer;
+            protected BaseCostFunction _Objective;
 
             public BaseNetwork(string name)
             {
@@ -68,9 +74,21 @@ namespace NeuralNetwork
                 get { return _layerGraph.GetGraphList; }
             }
 
+            public BaseOptimizer ModelOptimizer
+            {
+                get { return _Optimizer; }
+                set { _Optimizer = value; }
+            }
+
+            public BaseCostFunction ObjectiveFunction
+            {
+                get { return _Objective; }
+                set { _Objective = value; }
+            }
+
             public BaseNetwork AddLayer(BaseLayer newLayer)
             {
-                // Add New Layer to the Tail of Graph 
+                // Add New Layer to the Tail of Graph             
                 _layerGraph.AddTailNode(newLayer);
                 newLayer.FormatLayerParams();
                 _layerList = _layerGraph.GetGraphList;
@@ -83,6 +101,8 @@ namespace NeuralNetwork
                 // Remove Layer At Index
                 throw new NotImplementedException();
             }
+
+            
 
             private void FormatLayerParams()
             {
@@ -100,6 +120,8 @@ namespace NeuralNetwork
             public BaseNetwork AssembleModel()
             {
                 // Prepare this Model for Usage
+                _batchSize = _layerList[0].InputShape[0];
+
                 throw new NotImplementedException();
                 
                 _isAssembled = true;
