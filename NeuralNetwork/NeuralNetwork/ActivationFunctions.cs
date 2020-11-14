@@ -46,11 +46,7 @@ namespace NeuralNetwork
         {
             public override LayerActivations Call(LayerActivations X)
             {
-                for (int i = 0; i < X._nSamples; i ++)
-                {
-                    // Each sample in the Activations
-
-                }
+                
                 return X;
             }
         }

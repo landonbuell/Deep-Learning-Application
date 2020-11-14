@@ -10,8 +10,10 @@ namespace NeuralNetwork
         public class LayerActivations
         {
             // Hold Activation objects
-            public int[] Shape { get; set; }
-            public int _nSamples;
+            public double[,] FinalActivations { get; set; }
+
+            public double[,] LinearActivations { get; set; }
+
         }
 
     }

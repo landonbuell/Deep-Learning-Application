@@ -5,67 +5,110 @@ using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+
 namespace NeuralNetwork
 {
     namespace LayerUtilities
     {
         public class BaseLayerParameters
         {
-            // Object that holds and act on Weights & biases
-            private bool _trainable;
-            private Initializer _initializer;
+            // Object that holds and acts on Weights & biases    
+            protected Initializer _weightsInit;
+            protected Initializer _biasesInit;
 
-            protected int[] _weightShape;
-            protected int[] _biasShape;
+            protected readonly Random Generator = new Random();
 
-            public BaseLayerParameters( Initializer initInst, bool trainable)
+            // Shape of Weights & Biases
+            public int[] WeightShape { get; set; }
+            public int[] BiasShape { get; set; }
+
+            // Weights & Biases
+            protected double[,] _W;
+            protected double[] _b;
+
+            public BaseLayerParameters(bool trainable)
             {
-                _initializer = initInst;
-                _trainable = trainable;
+                IsTrainable = trainable;
             }
 
+            public BaseLayerParameters(bool trainable, int[] weightShape, int[] biasShape)
+            {
+                IsTrainable = trainable;
+                WeightShape = weightShape;
+                BiasShape = biasShape;
+            }
 
-            public virtual void Initialize (int[] inputShape, int[] outputShape)
+            public bool IsTrainable { get; protected set; }
+
+            public virtual void Initialize ()
             {
                 // Initialize These Parameters
+                // No params for parent LayerParameter Type
             }
 
-            public virtual void Call()
+            protected double[,] GenerateWeights()
             {
-                // Call this Layer's Parameters
+                // Generate Elements in Weight Matrix
+                double[,] array = new double[WeightShape[0], WeightShape[1]];
+                for (int i = 0; i < _W.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _W.GetLength(1); j++)
+                    {
+                        double randomVal = 10 * (Generator.NextDouble() - 0.5);
+                        array[i, j] = randomVal;
+                    }
+                }
+                return array;
             }
 
+            protected double[] GenerateBiases()
+            {
+                // Generate Elements in Weight Matrix
+                double[] array = new double[BiasShape[0]];
+                for (int i = 0; i < _W.GetLength(0); i++)
+                {
+                    double randomVal = 10 * (Generator.NextDouble() - 0.5);
+                    array[i] = randomVal;
+                }
+                return array;
+            }
 
+            public double[,] GetWeights
+            {
+                get { return _W; }
+                set { _W = value; }
+            }
+
+            public double[] GetBiases
+            {
+                get { return _b; }
+                set { _b = value; }
+            }
         }
 
         public class LinearDenseParameters : BaseLayerParameters
         {
             // Parameters Objects for LinearDenseLayer
+            
 
-            public LinearDenseParameters(Initializer initInst, bool trainable) : 
-                base(initInst,trainable )
+            public LinearDenseParameters(bool trainable) : base(trainable)            
             {
                 // Initialize LinearDenseParameters Instance
             }
 
-            public override void Initialize (int[] inputShape, int[] outputShape)
+            public override void Initialize()
             {
-                // Initialize Parameters in Dense Layer
-                _weightShape = new int[] { outputShape[0] , inputShape[0]};
-                _biasShape = new int[] { outputShape[0] , 1 };
-                
-                // Use Initializer Instance to Generate Weights & baises
-
+                // Initialize These Parameters
+                GenerateWeights();
+                GenerateBiases();
             }
-
         }
 
         public class Convolution2DParamaters : BaseLayerParameters
         {
             // Parameters Objects for Convoltion2DLayer
 
-            public Convolution2DParamaters(Initializer initInst, bool trainable) :
-                base(initInst, trainable)
+            public Convolution2DParamaters(bool trainable) :  base(trainable)
             {
                 // Initialize LinearDenseParameters Instance
             }

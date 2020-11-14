@@ -105,12 +105,12 @@ namespace NeuralNetwork
                 // Set Index on current Layer   
                 try
                 {
-                    int prevLayerIndex = currentLayer.PrevLayer._layerIndex;
-                    currentLayer._layerIndex = prevLayerIndex + 1;
+                    int prevLayerIndex = currentLayer.PrevLayer.LayerIndex;
+                    currentLayer.LayerIndex = prevLayerIndex + 1;
                 }
                 catch
                 {
-                    currentLayer._layerIndex = 0;
+                    currentLayer.LayerIndex = 0;
                 }
             }
 

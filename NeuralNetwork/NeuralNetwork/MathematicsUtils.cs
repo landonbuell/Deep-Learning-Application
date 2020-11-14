@@ -9,28 +9,6 @@ namespace NeuralNetwork
 {
     namespace Mathematics
     {
-
-        public struct TensorArray
-        {
-            // Represents N-Dimensional Array
-            private int[] _shape;
-            private Type _dtype;
-
-            public TensorArray(int[] shape, Type dtype)
-            {
-                _shape = shape;
-                _dtype = dtype;
-            }
-
-            public int[] Shape { get { return _shape;} }
-
-            public int NDim { get { return _shape.Length; } }
-
-          
-        }
-
-
-
         public static class LinearAlgebra
         {
             public static double[,] Transpose(double[,] A)
@@ -90,6 +68,9 @@ namespace NeuralNetwork
                 return C;
             }
         }
+
+
+
     }
 
     
