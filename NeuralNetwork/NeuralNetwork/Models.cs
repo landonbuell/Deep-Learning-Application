@@ -18,8 +18,11 @@ namespace NeuralNetwork
         public class BaseNetwork
         {
             // Base Model Class - All Inheritance from here
-            public string _modelName;
-            public string _modelType;
+
+            public string ModelName { get; protected set; }
+
+            public string ModelType { get; protected set; }
+
             protected int _layerCounter;
             protected bool _isAssembled;
             protected int _batchSize;
@@ -33,8 +36,8 @@ namespace NeuralNetwork
             public BaseNetwork(string name)
             {
                 // Constructor for BaseModel Class (Empty)
-                this._modelName = name;
-                this._modelType = "BaseNetworkType";
+                this.ModelName = name;
+                this.ModelType = "BaseNetworkType";
                 this._layerCounter = 0;
                 this._isAssembled = false;
 
@@ -46,8 +49,8 @@ namespace NeuralNetwork
             public BaseNetwork(string name, ComputationalGraph existingGraph)
             {
                 // Constructor for BaseModel Class (given Graph)
-                this._modelName = name;
-                this._modelType = "BaseNetworkType";
+                this.ModelName = name;
+                this.ModelType = "BaseNetworkType";
                 this._isAssembled = false;
 
                 // Intialize Graph & layer List for this Model
@@ -59,8 +62,8 @@ namespace NeuralNetwork
             public BaseNetwork(string name, List<BaseLayer> exisitingLayers)
             {
                 // Constructor for BaseModel Class (given Layers)
-                this._modelName = name;
-                this._modelType = "BaseNetworkType";
+                this.ModelName = name;
+                this.ModelType = "BaseNetworkType";
                 this._isAssembled = false;
 
                 // Intialize Graph & layer List for this Model
@@ -129,7 +132,7 @@ namespace NeuralNetwork
             public void ModelSummary()
             {
                 // Print Summary of this Model's Layers and Parameters
-                Console.WriteLine("{0} Summary",_modelName);
+                Console.WriteLine("{0} Summary",ModelName);
 
             }
 
@@ -139,10 +142,10 @@ namespace NeuralNetwork
         public class LinearNetwork : BaseNetwork
         {
 
-            public LinearNetwork(string name ): base(name)
+            public LinearNetwork(string name): base(name)
             {
                 // Constructor for LinearNetwork Object
-                this._modelType = "LinearNetworkType";
+                this.ModelType = "LinearNetworkType";
             }
 
         }

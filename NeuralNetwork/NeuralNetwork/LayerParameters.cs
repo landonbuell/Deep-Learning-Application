@@ -9,7 +9,7 @@ namespace NeuralNetwork
 {
     namespace LayerUtilities
     {
-        public class LayerParameters
+        public class BaseLayerParameters
         {
             // Object that holds and act on Weights & biases
             private bool _trainable;
@@ -18,7 +18,7 @@ namespace NeuralNetwork
             protected int[] _weightShape;
             protected int[] _biasShape;
 
-            public LayerParameters ( Initializer initInst, bool trainable)
+            public BaseLayerParameters( Initializer initInst, bool trainable)
             {
                 _initializer = initInst;
                 _trainable = trainable;
@@ -38,7 +38,7 @@ namespace NeuralNetwork
 
         }
 
-        public class LinearDenseParameters : LayerParameters
+        public class LinearDenseParameters : BaseLayerParameters
         {
             // Parameters Objects for LinearDenseLayer
 
@@ -60,7 +60,7 @@ namespace NeuralNetwork
 
         }
 
-        public class Convolution2DParamaters : LayerParameters
+        public class Convolution2DParamaters : BaseLayerParameters
         {
             // Parameters Objects for Convoltion2DLayer
 

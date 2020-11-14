@@ -49,9 +49,17 @@ namespace NeuralNetwork
                     AddTailNode(existingLayers[i]);
             }
 
-            public BaseLayer GetHead { get { return _headNode; } }
+            public BaseLayer GetHead 
+            { 
+                get { return _headNode; } 
+                private set { _headNode = (PointerLayer)value; } 
+            }
 
-            public BaseLayer GetTail { get { return _tailNode; } }
+            public BaseLayer GetTail 
+            { 
+                get { return _tailNode; }
+                private set { _tailNode = (PointerLayer)value; } 
+            }
 
             public void AddTailNode (BaseLayer newLayer)
             {
