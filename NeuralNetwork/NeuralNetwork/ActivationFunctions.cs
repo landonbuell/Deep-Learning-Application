@@ -1,9 +1,10 @@
-﻿using NeuralNetwork.LayerUtilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+
+using NeuralNetwork.LayerUtilities;
 
 namespace NeuralNetwork
 {
@@ -24,7 +25,7 @@ namespace NeuralNetwork
         { 
             // Base ActivationFunction Class
 
-            public static LayerUtilities.LayerActivations Call(LayerUtilities.LayerActivations X)
+            public virtual LayerActivations Call(LayerActivations X)
             {
                 // Apply Actication Functions to X
                 return X;
@@ -43,7 +44,15 @@ namespace NeuralNetwork
 
         public class Softmax : Activation
         {
+            public override LayerActivations Call(LayerActivations X)
+            {
+                for (int i = 0; i < X._nSamples; i ++)
+                {
+                    // Each sample in the Activations
 
+                }
+                return X;
+            }
         }
 
 

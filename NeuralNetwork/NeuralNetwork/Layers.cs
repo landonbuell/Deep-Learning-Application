@@ -97,10 +97,11 @@ namespace NeuralNetwork
                 return _layerParams;
             }
 
-            public static LayerActivations Call (LayerActivations X)
+            public virtual LayerActivations Call (LayerActivations X)
             {
                 // Call BaseLayer w/ Inputs X   
-                return X;
+                LayerActivations Y = _layerActFunc.Call(X);
+                return Y;
             }
         }
 
@@ -141,6 +142,12 @@ namespace NeuralNetwork
                 
 
             }
+
+            public override LayerActivations Call(LayerActivations X)
+            {
+                // Call This Layer w/ Inputs X
+                return X;
+            }
         }
 
         public class OutputLayer : LinearDense
@@ -150,6 +157,12 @@ namespace NeuralNetwork
                 // Constructor for Input Layer
                 _layerType = "OutputLayer";
 
+            }
+
+            public override LayerActivations Call (LayerActivations X)
+            {
+                // Call This layer w/ Inputs X
+                return X;
             }
 
         }

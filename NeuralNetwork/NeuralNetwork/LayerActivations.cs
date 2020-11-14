@@ -11,9 +11,8 @@ namespace NeuralNetwork
         {
             // Hold Activation objects
             public int[] Shape { get; set; }
-
-
-
+            public int _nSamples;
         }
+
     }
 }

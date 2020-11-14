@@ -102,8 +102,6 @@ namespace NeuralNetwork
                 throw new NotImplementedException();
             }
 
-            
-
             private void FormatLayerParams()
             {
                 // Iter through computational graph To Set Weight Params
@@ -131,6 +129,7 @@ namespace NeuralNetwork
             public void ModelSummary()
             {
                 // Print Summary of this Model's Layers and Parameters
+                Console.WriteLine("{0} Summary",_modelName);
 
             }
 

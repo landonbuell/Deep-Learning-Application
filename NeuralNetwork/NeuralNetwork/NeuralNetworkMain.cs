@@ -22,6 +22,8 @@ namespace NeuralNetwork
 
             List<BaseLayer> NetworkALayers = NetworkA.GetLayerList;
 
+            NetworkA.ModelSummary();
+
             Console.WriteLine("=)");
 
         }

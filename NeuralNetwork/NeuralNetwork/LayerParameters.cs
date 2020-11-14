@@ -30,6 +30,10 @@ namespace NeuralNetwork
                 // Initialize These Parameters
             }
 
+            public virtual void Call()
+            {
+                // Call this Layer's Parameters
+            }
 
 
         }
