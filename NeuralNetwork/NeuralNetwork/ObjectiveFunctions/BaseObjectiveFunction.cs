@@ -6,9 +6,10 @@ namespace NeuralNetwork
 {
     namespace ObjectiveFunctions
     {
-        public class BaseCostFunction
+        public class BaseObjectiveFunction
         {
-
+            // Cost Function Compares predictions and labels
+            // 
         }
 
     }

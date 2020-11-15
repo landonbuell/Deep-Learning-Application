@@ -1,6 +1,6 @@
-﻿
-using NeuralNetwork.LayerUtilities;
+﻿using System;
 
+using NeuralNetwork.LayerUtilities;
 
 namespace NeuralNetwork
 {
@@ -16,16 +16,13 @@ namespace NeuralNetwork
             public int LayerIndex { get; set; }
 
             public bool Initialized { get; protected set; }
-    
-            protected LayerActivations _layerActivations;   
-            protected BaseLayerParameters _layerParams;
-            protected Activation _layerActFunc;
-            
+
+            protected 
+
+            protected int batchSize;
             protected int[] _shapeInput;
             protected int[] _shapeOutput;
             protected int[] _shapeActivation;
-            
-            protected int batchSize;
             
             private BaseLayer _layerNext;
             private BaseLayer _layerPrev;
@@ -35,7 +32,7 @@ namespace NeuralNetwork
                 // Constructor for BaseLayer Class (Given only name)
                 LayerName = name;
                 LayerType = "BaseLayer";
-                _layerActFunc = new Activation();
+                
                 Initialized = false;
 
 
@@ -47,7 +44,7 @@ namespace NeuralNetwork
                 // Constructor for BaseLayer Class 
                 LayerName = name;
                 LayerType = "BaseLayer";
-                _layerActFunc = actFunc;
+                
                 Initialized = false;
 
             }
@@ -87,8 +84,6 @@ namespace NeuralNetwork
                 set { _shapeActivation = value; }
             }
 
-            public bool IsTrainable { get { return _layerParams.IsTrainable; } }
-
             public virtual void FormatLayerParams()
             {
                 // Format The Layer Params Object
@@ -97,18 +92,16 @@ namespace NeuralNetwork
                 _shapeOutput = _shapeInput;
             }
 
-            public virtual BaseLayerParameters GetLayerParams()
+            public virtual void GetLayerParams()
             {
                 // get the Layer Params Object
-                return _layerParams;
+                throw new NotImplementedException();
             }
 
             public virtual LayerActivations Call (LayerActivations X)
             {
                 // Call BaseLayer w/ Inputs X
-                _layerActivations.LinearActivations = X.FinalActivations;
-                _layerActivations.FinalActivations = X.FinalActivations ;
-                return _layerActivations;
+                return X;
             }
         }
 

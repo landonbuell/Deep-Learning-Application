@@ -7,21 +7,21 @@ using NeuralNetwork.LayerUtilities;
 
 namespace NeuralNetwork
 {
-    namespace DoubleLinkedGraphs
+    namespace ComputationalGraphs
     {
-        public class ComputationalGraph
+        public class LinearGraph
         {
             private PointerLayer _headNode = new PointerLayer("HeadNode");
             private PointerLayer _tailNode = new PointerLayer("TailNode");
 
-            public ComputationalGraph()
+            public LinearGraph()
             {
                 // Constructor for Computational Graph (Empty)
                 _headNode.NextLayer = _tailNode;
                 _tailNode.PrevLayer = _headNode;
             }
             
-            public ComputationalGraph(BaseLayer existingLayer)
+            public LinearGraph(BaseLayer existingLayer)
             {
                 // Constructor for Computational Graph (One Node)
                 _headNode.NextLayer = _tailNode;
@@ -29,7 +29,7 @@ namespace NeuralNetwork
                 AddTailNode(existingLayer);
             }
 
-            public ComputationalGraph(List<BaseLayer> existingLayers)
+            public LinearGraph(List<BaseLayer> existingLayers)
             {
                 // Constructor for Computational Graph (List of Nodes)
                 _headNode.NextLayer = _tailNode;
@@ -38,7 +38,7 @@ namespace NeuralNetwork
                     AddTailNode(existingLayers[i]);
             }
 
-            public ComputationalGraph(ComputationalGraph exisitngGraph)
+            public LinearGraph(LinearGraph exisitngGraph)
             {
                 // Constructor for Computational Graph (Wxisitng Graph)
                 _headNode.NextLayer = _tailNode;

@@ -9,13 +9,11 @@ namespace NeuralNetwork
 
         public class LinearNetwork : BaseNetwork
         {
-
             public LinearNetwork(string name): base(name)
             {
                 // Constructor for LinearNetwork Object
                 this.ModelType = "LinearNetworkType";
             }
-
         }
     }
 }

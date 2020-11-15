@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NeuralNetwork.Layers;
 using NeuralNetwork.LayerUtilities;
 using NeuralNetwork.ObjectiveFunctions;
-using NeuralNetwork.DoubleLinkedGraphs;
+using NeuralNetwork.ComputationalGraphs;
 using NeuralNetwork.Optimizers;
 
 
@@ -27,7 +27,7 @@ namespace NeuralNetwork
             protected bool _isAssembled;
 
             protected List<BaseLayer> _layerList;
-            protected ComputationalGraph _layerGraph;
+            protected LinearGraph _layerGraph;
 
             protected BaseOptimizer _Optimizer;
             protected BaseCostFunction _Objective;
@@ -41,11 +41,11 @@ namespace NeuralNetwork
                 this._isAssembled = false;
 
                 // Intialize Graph & layer List for this Model
-                this._layerGraph = new ComputationalGraph();
+                this._layerGraph = new LinearGraph();
                 this._layerList = new List<BaseLayer>();
             }
 
-            public BaseNetwork(string name, ComputationalGraph existingGraph)
+            public BaseNetwork(string name, LinearGraph existingGraph)
             {
                 // Constructor for BaseModel Class (given Graph)
                 this.ModelName = name;
@@ -66,7 +66,7 @@ namespace NeuralNetwork
                 this._isAssembled = false;
 
                 // Intialize Graph & layer List for this Model
-                this._layerGraph = new ComputationalGraph(exisitingLayers);
+                this._layerGraph = new LinearGraph(exisitingLayers);
                 this._layerList = _layerGraph.GetGraphList;
                 this._layerCounter = _layerList.Count;
             }
