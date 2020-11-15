@@ -10,47 +10,18 @@ namespace NeuralNetwork
 {
     namespace LayerUtilities
     {
-        public static partial class LayerUtilitiesMap
+        public class BaseActivationFunction
         {
-            // Dictionary maps String to Activation Function
-            public static Dictionary<string, Activation> ActFuncMap = new Dictionary<string, Activation>
+            // Parent Activation Function Class
+            protected double[] Call (BaseActivations X)
             {
-                {" ", new Identity() },
-                {"Identity",new Identity() },
-                {"ReLU",new RectifiedLinearUnit()}
-            };
-        }
+                // Apply Activation Function to Inputs X
 
-        public class Activation
-        { 
-            // Base ActivationFunction Class
-
-            public virtual LayerActivations Call(LayerActivations X)
-            {
-                // Apply Actication Functions to X
                 return X;
             }
-        }
 
-        public class Identity : Activation
-        {
+            protected Base
 
         }
-
-        public class RectifiedLinearUnit : Activation
-        {
-
-        }
-
-        public class Softmax : Activation
-        {
-            public override LayerActivations Call(LayerActivations X)
-            {
-                
-                return X;
-            }
-        }
-
-
     }
 }

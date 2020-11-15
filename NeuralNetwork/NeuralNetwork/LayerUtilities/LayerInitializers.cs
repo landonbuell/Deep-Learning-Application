@@ -6,29 +6,9 @@ namespace NeuralNetwork
 {
     namespace LayerUtilities
     {
-
-        public static partial class LayerUtilitiesMap
+        public class BaseInitializer
         {
-            // Dictionary maps String to Activation Function
-            public static Dictionary<string, Initializer> InitializerMap = new Dictionary<string, Initializer>
-            {
-                
-            };
+            // Parent Paramater Intializer Class
         }
-
-        public class Initializer
-        {
-            // Initializer Class to Initialize Layer Params
-            private int[] _weightsShape;
-            private int[] _biasesShape;
-
-            public Initializer()
-            {
-                // Constructor For Base intialize Class
-            }
-
-
-        }
-
     }
 }

@@ -20,8 +20,8 @@ namespace NeuralNetwork
                 
             }
 
-            public LinearDense(string name, int nodes, Activation actFunc,
-                Initializer weightsInit, Initializer biasesInit) : 
+            public LinearDense(string name, int nodes, BaseActivationFunction actFunc,
+                BaseInitializer weightsInit, BaseInitializer biasesInit) : 
                 base(name,actFunc,weightsInit,biasesInit)
             {
                 // Constructor for Linear Dense Layer Class
@@ -45,18 +45,6 @@ namespace NeuralNetwork
 
                 Initialized = true;
             }
-
-            public override LayerActivations Call (LayerActivations X)
-            {
-                // Call this layer w/ Layer Activations
-
-                return X;
-            }
-
-    
-
         }
-
     }
-   
 }

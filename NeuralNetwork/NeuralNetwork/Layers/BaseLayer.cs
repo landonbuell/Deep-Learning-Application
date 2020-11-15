@@ -6,7 +6,7 @@ namespace NeuralNetwork
 {
     namespace Layers
     {
-        public class BaseLayer
+        public abstract class BaseLayer
         {
 
             public string LayerName { get; protected set; }
@@ -17,7 +17,12 @@ namespace NeuralNetwork
 
             public bool Initialized { get; protected set; }
 
-            protected 
+            protected BaseActivations _layerActivations;
+            protected BaseActivationFunction _activationFunction;
+            protected BaseLayerParameters _layerParameters;
+
+            protected BaseInitializer _weightsInitializer;
+            protected BaseInitializer _biasesInitializer;
 
             protected int batchSize;
             protected int[] _shapeInput;
@@ -34,12 +39,10 @@ namespace NeuralNetwork
                 LayerType = "BaseLayer";
                 
                 Initialized = false;
-
-
             }
 
-            public BaseLayer (string name, Activation actFunc, 
-                Initializer weightsInit, Initializer biasesInit)
+            public BaseLayer (string name, BaseActivationFunction actFunc,
+                BaseInitializer weightsInit, BaseInitializer biasesInit)
             {
                 // Constructor for BaseLayer Class 
                 LayerName = name;
@@ -92,19 +95,52 @@ namespace NeuralNetwork
                 _shapeOutput = _shapeInput;
             }
 
+            protected struct LayerParameters
+            {
+                // Internally Defined Struct to hold Weights & Biases
+                private int[] _weightShape;
+                private int[] _biasShape;
+
+                public LayerParameters(int[] weightShape, int[] biasShape)
+                {
+                    _weightShape = weightShape;
+                    _biasShape = biasShape;
+                }
+
+
+            }
+
+            protected struct LayerActivations
+            {
+                // Internally defined Struct to hold Layer Activations
+                private int[] _shape;
+                private int _rank;
+
+                public Array LinearActivations { get; private set; }
+
+                public Array OutputActivations { get; private set; }
+
+                public LayerActivations(int[] shape)
+                {
+                    _shape = shape;
+                    _rank = _shape.Length;
+
+                    LinearActivations = Array.CreateInstance(typeof(double), _shape);
+                    OutputActivations = Array.CreateInstance(typeof(double), _shape);
+                    
+                }
+
+                
+
+
+            }
+
             public virtual void GetLayerParams()
             {
                 // get the Layer Params Object
                 throw new NotImplementedException();
             }
 
-            public virtual LayerActivations Call (LayerActivations X)
-            {
-                // Call BaseLayer w/ Inputs X
-                return X;
-            }
         }
-
-    }
-   
+    } 
 }
