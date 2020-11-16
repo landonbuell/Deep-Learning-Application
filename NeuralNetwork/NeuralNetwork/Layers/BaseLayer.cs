@@ -17,9 +17,9 @@ namespace NeuralNetwork
 
             public bool Initialized { get; protected set; }
 
-            protected BaseActivations _layerActivations;
             protected BaseActivationFunction _activationFunction;
-            protected BaseLayerParameters _layerParameters;
+            protected LayerActivations _layerActivations;         
+            protected LayerParameters _layerParameters;
 
             protected BaseInitializer _weightsInitializer;
             protected BaseInitializer _biasesInitializer;
@@ -37,8 +37,12 @@ namespace NeuralNetwork
                 // Constructor for BaseLayer Class (Given only name)
                 LayerName = name;
                 LayerType = "BaseLayer";
-                
+
+                // Set some default properties
                 Initialized = false;
+
+                // Activation Function Instance & Initializers 
+
             }
 
             public BaseLayer (string name, BaseActivationFunction actFunc,
@@ -47,9 +51,16 @@ namespace NeuralNetwork
                 // Constructor for BaseLayer Class 
                 LayerName = name;
                 LayerType = "BaseLayer";
-                
+
+                // Set some default properties
                 Initialized = false;
 
+                // Set Activation Function Instance & Initializers
+                _activationFunction = actFunc;
+                _weightsInitializer = weightsInit;
+                _biasesInitializer = biasesInit;
+                
+                
             }
 
             public BaseLayer NextLayer
@@ -86,27 +97,32 @@ namespace NeuralNetwork
                 get { return _shapeActivation; }
                 set { _shapeActivation = value; }
             }
-
-            public virtual void FormatLayerParams()
-            {
-                // Format The Layer Params Object
-                _shapeInput = _layerPrev._shapeOutput;
-                _shapeActivation = _shapeInput;
-                _shapeOutput = _shapeInput;
-            }
-
+  
             protected struct LayerParameters
             {
                 // Internally Defined Struct to hold Weights & Biases
                 private int[] _weightShape;
                 private int[] _biasShape;
 
-                public LayerParameters(int[] weightShape, int[] biasShape)
+                public Array Weights { get; private set; }
+
+                public Array Biases { get; private set; }
+
+                public LayerParameters (int[] weightShape, int[] biasShape)
                 {
                     _weightShape = weightShape;
                     _biasShape = biasShape;
+
+                    Weights = Array.CreateInstance(typeof(double), _weightShape);
+                    Biases = Array.CreateInstance(typeof(double), _biasShape);
                 }
 
+                private void GenerateParams(BaseInitializer init, int[] shape)
+                {
+                    // Generate this layers Paramaters
+                    
+
+                }
 
             }
 
@@ -129,10 +145,17 @@ namespace NeuralNetwork
                     OutputActivations = Array.CreateInstance(typeof(double), _shape);
                     
                 }
+            }
 
-                
+            public virtual void FormatLayer()
+            {
+                // Determine input,output,activations shape
+                _shapeInput = _layerPrev._shapeOutput;
+                _shapeActivation = _shapeInput;
+                _shapeOutput = _shapeInput;
 
-
+                // Format Activations struct 
+                _layerActivations = new LayerActivations(_shapeActivation);
             }
 
             public virtual void GetLayerParams()

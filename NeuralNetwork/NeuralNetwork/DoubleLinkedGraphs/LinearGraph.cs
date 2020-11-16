@@ -11,6 +11,8 @@ namespace NeuralNetwork
     {
         public class LinearGraph
         {
+            // Linear Graph is a Double Linked List w/ Sentinel Nodes
+            // Each node has exactly 1 previous and 1 next node
             private PointerLayer _headNode = new PointerLayer("HeadNode");
             private PointerLayer _tailNode = new PointerLayer("TailNode");
 
@@ -26,6 +28,7 @@ namespace NeuralNetwork
                 // Constructor for Computational Graph (One Node)
                 _headNode.NextLayer = _tailNode;
                 _tailNode.PrevLayer = _headNode;
+                // Add Single node in the middle
                 AddTailNode(existingLayer);
             }
 
@@ -34,19 +37,20 @@ namespace NeuralNetwork
                 // Constructor for Computational Graph (List of Nodes)
                 _headNode.NextLayer = _tailNode;
                 _tailNode.PrevLayer = _headNode;
+                // Add Each node (in order) to the tail
                 for (int i = 0; i < existingLayers.Count; i++)
                     AddTailNode(existingLayers[i]);
             }
 
             public LinearGraph(LinearGraph exisitngGraph)
             {
-                // Constructor for Computational Graph (Wxisitng Graph)
-                _headNode.NextLayer = _tailNode;
-                _tailNode.PrevLayer = _headNode;
-                // Convert to layer list, add in order
-                List<BaseLayer> existingLayers = exisitngGraph.GetGraphList;
-                for (int i = 0; i < existingLayers.Count; i++)
-                    AddTailNode(existingLayers[i]);
+                // Constructor for Computational Graph (Exisitng Graph)
+                _headNode.NextLayer = exisitngGraph._headNode.NextLayer;
+                _headNode.NextLayer.PrevLayer = _headNode;
+
+                _tailNode.PrevLayer = exisitngGraph._tailNode.PrevLayer;
+                _tailNode.PrevLayer.NextLayer = _tailNode;
+
             }
 
             public BaseLayer GetHead 

@@ -30,16 +30,21 @@ namespace NeuralNetwork
                 
             }
 
-            public override void FormatLayerParams()
+            public override void FormatLayer()
             {
                 // Set Shapes for This Layer
                 _shapeInput = PrevLayer.OutputShape;
-                int prevBatch = _shapeInput[1];
-                int prevNodes = _shapeInput[1];
+                _shapeOutput = new int[] { _shapeInput[0], Nodes };
+                _shapeActivation = _shapeOutput;
 
-                // Set Activation Shape & Output Shape
-                _shapeActivation = new int[2] { prevBatch, Nodes };
-                _shapeOutput = _shapeActivation;
+                int[] weightsShape = new int[] { Nodes, _shapeInput[1] };
+                int[] biasesShape = new int[] { 1, Nodes };
+
+                // Create Layer Paramaters for this Object
+                _layerActivations = new LayerActivations(_shapeActivation);
+                _layerParameters = new LayerParameters(weightsShape, biasesShape);
+
+                
 
                 // Initialize the Weights & Biases
 
