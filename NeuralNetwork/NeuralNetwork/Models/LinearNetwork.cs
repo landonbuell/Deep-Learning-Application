@@ -2,19 +2,17 @@
 using System.Transactions;
 using NeuralNetwork.LayerUtilities;
 
-namespace NeuralNetwork
+namespace NeuralNetwork.Models
 {
-    namespace Models
-    {
 
-        public class LinearNetwork : BaseNetwork
+    public class LinearNetwork : BaseNetwork
+    {
+        public LinearNetwork(string name): base(name)
         {
-            public LinearNetwork(string name): base(name)
-            {
-                // Constructor for LinearNetwork Object
-                this.ModelType = "LinearNetworkType";
-            }
+            // Constructor for LinearNetwork Object
+            this.ModelType = "LinearNetworkType";
         }
     }
+    
 }
     

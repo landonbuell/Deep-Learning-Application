@@ -6,14 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 
-namespace NeuralNetwork
+namespace NeuralNetwork.LayerUtilities
 {
-    namespace LayerUtilities
+    public class BaseLayerParameters
     {
-        public class BaseLayerParameters
-        {
-            // Parent Layer Parameters Class
+        // Parent Layer Parameters Class
 
-        }
     }
 }

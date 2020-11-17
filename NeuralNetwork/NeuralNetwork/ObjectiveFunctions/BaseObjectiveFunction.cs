@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NeuralNetwork
+namespace NeuralNetwork.ObjectiveFunctions
 {
-    namespace ObjectiveFunctions
+    public class BaseObjectiveFunction
     {
-        public class BaseObjectiveFunction
-        {
-            // Cost Function Compares predictions and labels
-            // 
-        }
-
+        // Cost Function Compares predictions and labels
+        // 
     }
-    
+
 }

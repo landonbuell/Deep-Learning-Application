@@ -6,24 +6,19 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 
-namespace NeuralNetwork
+namespace NeuralNetwork.Layers
 {
-    namespace Layers
+    public class PointerLayer : BaseLayer
     {
-        public class PointerLayer : BaseLayer
+        // Pointer Layer Only Points to another layer
+        // Is used as Head/Tail Nodes in Layer Graph
+
+        public PointerLayer (string name) : base(name)
         {
-            // Pointer Layer Only Points to another layer
-            // Is used as Head/Tail Nodes in Layer Graph
-
-            public PointerLayer (string name) : base(name)
-            {
-                // Constructor for PointerLayer
-                LayerType = "PointerLayer";
-                NextLayer = null;
-                PrevLayer = null;
-            }
+            // Constructor for PointerLayer
+            LayerType = "PointerLayer";
+            NextLayer = null;
+            PrevLayer = null;
         }
-
-    }
-   
+    }   
 }
