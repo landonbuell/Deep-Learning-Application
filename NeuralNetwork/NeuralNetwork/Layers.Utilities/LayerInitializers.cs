@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NeuralNetwork.LayerUtilities
+namespace NeuralNetwork.Layers.Utilities
 {  
     public abstract class BaseInitializer
     {

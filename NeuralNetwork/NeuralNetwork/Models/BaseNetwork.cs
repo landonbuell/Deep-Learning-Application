@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 using NeuralNetwork.Layers;
 using NeuralNetwork.LayerUtilities;
@@ -112,7 +113,6 @@ namespace NeuralNetwork.Models
                 currentLayer.FormatLayer();
                 currentLayer = currentLayer.NextLayer;
             }
-
         }
            
         public BaseNetwork AssembleModel()
@@ -126,11 +126,11 @@ namespace NeuralNetwork.Models
             return this;
         }
 
-        protected BaseLayerActivations Call (LayerActivations X)
+        protected Array Call (Array input)
         {
             // Execute Forward Pass on this model
             BaseLayer currentLayer = _layerGraph.GetHead.NextLayer;
-            LayerActivations X = inputArray;
+            Array X = input;
 
             // Pass Through the Network
             while (currentLayer != _layerGraph.GetTail)
@@ -155,13 +155,12 @@ namespace NeuralNetwork.Models
             throw new NotImplementedException();
         }
 
-        public void ModelSummary()
+        public virtual void ModelSummary()
         {
             // Print Summary of this Model's Layers and Parameters
             if (_isAssembled == false) { throw new Exception(); }
             Console.WriteLine("\n{0} Summary:",ModelName);
-                
-
+               
         }
 
     }

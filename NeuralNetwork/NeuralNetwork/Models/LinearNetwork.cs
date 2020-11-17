@@ -12,6 +12,11 @@ namespace NeuralNetwork.Models
             // Constructor for LinearNetwork Object
             this.ModelType = "LinearNetworkType";
         }
+
+        public override void ModelSummary()
+        {
+            // Print Summary of this model
+        }
     }
     
 }

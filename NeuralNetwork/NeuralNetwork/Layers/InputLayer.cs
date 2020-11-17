@@ -1,4 +1,6 @@
-﻿namespace NeuralNetwork.Layers
+﻿using System;
+
+namespace NeuralNetwork.Layers
 {
     public class InputLayer : BaseLayer
     {
@@ -20,6 +22,7 @@
             // No weights or activations for this layer Type (null)
             LayerIndex = 0;
         }
+
     }
     
 }

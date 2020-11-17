@@ -14,7 +14,7 @@ namespace NeuralNetwork.ComputationalGraphs
         private PointerLayer _headNode = new PointerLayer("HeadNode");
         private PointerLayer _tailNode = new PointerLayer("TailNode");
 
-        public LinearGraph()
+        public LinearGraph() : base()
         {
             // Constructor for Computational Graph (Empty)
             _headNode.NextLayer = _tailNode;
@@ -48,19 +48,18 @@ namespace NeuralNetwork.ComputationalGraphs
 
             _tailNode.PrevLayer = exisitngGraph._tailNode.PrevLayer;
             _tailNode.PrevLayer.NextLayer = _tailNode;
-
         }
 
-        public BaseLayer GetHead 
-        { 
-            get { return _headNode; } 
-            private set { _headNode = (PointerLayer)value; } 
+        public BaseLayer GetHead
+        {
+            get { return _headNode; }
+            private set { _headNode = (PointerLayer)value; }
         }
 
-        public BaseLayer GetTail 
-        { 
+        public BaseLayer GetTail
+        {
             get { return _tailNode; }
-            private set { _tailNode = (PointerLayer)value; } 
+            private set { _tailNode = (PointerLayer)value; }
         }
 
         public void AddTailNode (BaseLayer newLayer)

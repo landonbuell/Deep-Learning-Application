@@ -1,6 +1,7 @@
 ﻿
 using NeuralNetwork.LayerUtilities;
-
+using System;
+using System.Diagnostics;
 
 namespace NeuralNetwork.Layers
 {    
@@ -47,6 +48,14 @@ namespace NeuralNetwork.Layers
             // Initialize the Weights & Biases
 
             Initialized = true;
+        }
+
+        public override double[,] Call (double[,] inputArray)
+        {
+            // Call Linear Dense Layer
+            Debug.Assert(X.s)
+
+            return inputArray;
         }
     }
     

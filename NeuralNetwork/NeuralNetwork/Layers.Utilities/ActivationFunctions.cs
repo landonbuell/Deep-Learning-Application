@@ -6,16 +6,15 @@ using System.Text;
 
 using NeuralNetwork.LayerUtilities;
 
-namespace NeuralNetwork.LayerUtilities
+namespace NeuralNetwork.Layers.Utilities
 {
 
     public class BaseActivationFunction
     {
         // Parent Activation Function Class
-        protected BaseActivations Call (BaseActivations X)
+        protected Array Call (Array X)
         {
             // Apply Activation Function to Inputs X
-
             return X;
         }
     }
