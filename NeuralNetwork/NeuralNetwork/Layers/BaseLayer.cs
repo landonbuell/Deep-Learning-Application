@@ -1,6 +1,6 @@
 ﻿using System;
 
-using NeuralNetwork.LayerUtilities;
+using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Layers
 {

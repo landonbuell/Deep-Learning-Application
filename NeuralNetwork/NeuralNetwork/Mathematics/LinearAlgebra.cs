@@ -49,7 +49,7 @@ namespace NeuralNetwork.Mathematics
             return C;
         }
 
-        public static double[,] MatrixProduct (double[,] A, double[,] B)
+        public static double[,] MatrixProduct2D (double[,] A, double[,] B)
         {
             // Compute Matrix Product of A & B
             Debug.Assert(A.GetLength(1) == B.GetLength(0));
@@ -66,4 +66,22 @@ namespace NeuralNetwork.Mathematics
             return C;
         }
     }
+
+
+
+    public static class ArrayTools
+    {
+        // Tools for Arrays:
+        public static int[] GetShape (Array X)
+        {
+            // Get shape of Array X, return int arr of length rank
+            int[] shape = new int[X.Rank];
+            for (int i = 0; i < X.Rank; i++)
+            {
+                shape[i] = X.GetLength(i);
+            }
+            return shape;
+        }
+    }
+
 }
