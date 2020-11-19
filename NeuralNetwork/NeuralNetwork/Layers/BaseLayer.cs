@@ -6,6 +6,7 @@ namespace NeuralNetwork.Layers
 {
     public abstract class BaseLayer
     {
+        // All Layers Inherit From BaseLayer Class
 
         public string LayerName { get; protected set; }
 

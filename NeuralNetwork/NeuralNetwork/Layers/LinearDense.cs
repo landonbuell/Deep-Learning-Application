@@ -56,6 +56,8 @@ namespace NeuralNetwork.Layers
             // Call Linear Dense Layer
             Debug.Assert(ArrayTools.GetShape(inputArray) == _shapeInput);
   
+
+
             return inputArray;
         }
     }

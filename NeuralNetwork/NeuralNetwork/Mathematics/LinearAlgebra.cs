@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Numerics;
 using System.Data;
 
@@ -64,23 +61,6 @@ namespace NeuralNetwork.Mathematics
                 }
             }
             return C;
-        }
-    }
-
-
-
-    public static class ArrayTools
-    {
-        // Tools for Arrays:
-        public static int[] GetShape (Array X)
-        {
-            // Get shape of Array X, return int arr of length rank
-            int[] shape = new int[X.Rank];
-            for (int i = 0; i < X.Rank; i++)
-            {
-                shape[i] = X.GetLength(i);
-            }
-            return shape;
         }
     }
 
