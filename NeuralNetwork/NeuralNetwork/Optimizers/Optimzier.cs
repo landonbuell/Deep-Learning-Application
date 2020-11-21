@@ -6,12 +6,12 @@ using NeuralNetwork.ObjectiveFunctions;
 
 namespace NeuralNetwork.Optimizers
 {
-    public class BaseOptimizer 
+    public class Optimizer 
     {
         public string _name;
             
 
-        public BaseOptimizer()
+        public Optimizer()
         {
             // Constructor Method for BaseOptimizer Class
             _name = "BaseOptimizer";

@@ -19,31 +19,45 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for Linear Dense Layer Class
             LayerType = "LinearDense";
-            Nodes = nodes;
-                            
+            Nodes = nodes;              
         }
 
+        public LinearDense(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
+        {
+            // Constructor for Linear Dense Layer Class
+            LayerType = "LinearDense";
+            Nodes = nodes;
+        }
+
+        public LinearDense(string name, int nodes, ActivationFunction actFunc,
+            BaseInitializer weightsInit , BaseInitializer biasesInit) : base(name,actFunc,weightsInit,biasesInit)
+        {
+            // Constructor for Linear Dense Layer Class
+            LayerType = "LinearDense";
+            Nodes = nodes;
+        }
 
         #endregion
 
+        public void Call(double [,] X)
+        {
+            // Call Layer w/ Inputs X
+        }
+
         public override void FormatLayer()
         {
-            // Set Shapes for This Layer
-            _shapeInput = PrevLayer.OutputShape;
-            _shapeOutput = new int[] { _shapeInput[0], Nodes };
+            // Determine input,output shapes
+            InputShape = PrevLayer.OutputShape;
+            OutputShape = InputShape;
 
-            int[] weightsShape = new int[] { Nodes, _shapeInput[1] };
-            int[] biasesShape = new int[] { 1, Nodes };
-
-            // Create Layer Paramaters for this Object
+            // Format Activations struct 
             _layerActivations = new LayerActivations(_shapeOutput);
+        }
 
-
-                
-
-            // Initialize the Weights & Biases
-
-            Initialized = true;
+        public override void GetLayerParams()
+        {
+            // get the Layer Params Object
+            throw new NotImplementedException();
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Layers
@@ -21,7 +22,7 @@ namespace NeuralNetwork.Layers
         protected BaseInitializer _weightsInitializer;
         protected BaseInitializer _biasesInitializer;
 
-        protected int batchSize;
+        protected int _batchSize;
         protected int[] _shapeInput;
         protected int[] _shapeOutput;
 
@@ -106,13 +107,19 @@ namespace NeuralNetwork.Layers
         }
 
         #endregion
+        
+        public virtual Array Call (Array X)
+        {
+            // Call Layer w/ Inputs X
+            return X;
+        }
 
         public virtual void FormatLayer()
         {
-            // Determine input,output,activations shape
-            _shapeInput = _layerPrev._shapeOutput;
-            _shapeOutput = _shapeInput;
-
+            // Determine input,output shapes
+            InputShape = PrevLayer.OutputShape;
+            OutputShape = InputShape;
+            
             // Format Activations struct 
             _layerActivations = new LayerActivations(_shapeOutput);
         }

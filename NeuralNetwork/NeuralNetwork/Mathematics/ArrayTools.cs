@@ -19,8 +19,6 @@ namespace NeuralNetwork.Mathematics
         public static void Iterate(Array X)
         {
             // Iterate through all elements of array recursivly
-            int[] shapeX = ArrayTools.GetShape(X);
-            for (int i = )
 
         }
 

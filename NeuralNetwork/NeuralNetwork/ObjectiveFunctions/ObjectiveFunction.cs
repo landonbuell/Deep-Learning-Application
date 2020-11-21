@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NeuralNetwork.ObjectiveFunctions
 {
-    public class BaseObjectiveFunction
+    public class ObjectiveFunction
     {
         // Cost Function Compares predictions and labels
         // 

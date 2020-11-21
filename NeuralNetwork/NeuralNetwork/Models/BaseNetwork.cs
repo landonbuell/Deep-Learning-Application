@@ -24,11 +24,11 @@ namespace NeuralNetwork.Models
         protected int _layerCounter;
         protected bool _isAssembled;
 
-        protected List<NetworkLayer> _layerList;
+        protected List<Layer> _layerList;
         protected LinearGraph _layerGraph;
 
         protected BaseOptimizer _Optimizer;
-        protected BaseObjectiveFunction _Objective;
+        protected ObjectiveFunction _Objective;
 
         public BaseNetwork(string name)
         {
@@ -40,7 +40,7 @@ namespace NeuralNetwork.Models
 
             // Intialize Graph & layer List for this Model
             this._layerGraph = new LinearGraph();
-            this._layerList = new List<NetworkLayer>();
+            this._layerList = new List<Layer>();
         }
 
         public BaseNetwork(string name, LinearGraph existingGraph)
@@ -56,7 +56,7 @@ namespace NeuralNetwork.Models
             this._layerCounter = _layerList.Count;
         }
 
-        public BaseNetwork(string name, List<NetworkLayer> exisitingLayers)
+        public BaseNetwork(string name, List<Layer> exisitingLayers)
         {
             // Constructor for BaseModel Class (given Layers)
             this.ModelName = name;
@@ -69,7 +69,7 @@ namespace NeuralNetwork.Models
             this._layerCounter = _layerList.Count;
         }
 
-        public List<NetworkLayer> GetLayerList 
+        public List<Layer> GetLayerList 
         { 
             get { return _layerGraph.GetGraphList; }
         }
@@ -80,13 +80,13 @@ namespace NeuralNetwork.Models
             protected set { _Optimizer = value; }
         }
 
-        public BaseObjectiveFunction ObjectiveFunction
+        public ObjectiveFunction ObjectiveFunction
         {
             get { return _Objective; }
             protected set { _Objective = value; }
         }
 
-        public BaseNetwork AddLayer(NetworkLayer newLayer)
+        public BaseNetwork AddLayer(Layer newLayer)
         {
             // Add New Layer to the Tail of Graph             
             _layerGraph.AddTailNode(newLayer);
@@ -96,7 +96,7 @@ namespace NeuralNetwork.Models
             return this;
         }
 
-        public NetworkLayer PopLayer(int index = -1)
+        public Layer PopLayer(int index = -1)
         {
             // Remove Layer At Index
             throw new NotImplementedException();
@@ -105,7 +105,7 @@ namespace NeuralNetwork.Models
         private void FormatLayerParams()
         {
             // Iter through computational graph To Set Weight Params
-            NetworkLayer currentLayer = _layerGraph.GetHead.NextLayer;
+            Layer currentLayer = _layerGraph.GetHead.NextLayer;
             while (currentLayer != _layerGraph.GetTail)
             {
                 // Iterate through graph
@@ -128,7 +128,7 @@ namespace NeuralNetwork.Models
         protected Array Call (Array input)
         {
             // Execute Forward Pass on this model
-            NetworkLayer currentLayer = _layerGraph.GetHead.NextLayer;
+            Layer currentLayer = _layerGraph.GetHead.NextLayer;
             Array X = input;
 
             // Pass Through the Network
