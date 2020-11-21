@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 using NeuralNetwork.Layers;
-using NeuralNetwork.LayerUtilities;
+using NeuralNetwork.Layers.Utilities;
 using NeuralNetwork.ObjectiveFunctions;
 using NeuralNetwork.ComputationalGraphs;
 using NeuralNetwork.Optimizers;
-
 
 
 namespace NeuralNetwork.Models

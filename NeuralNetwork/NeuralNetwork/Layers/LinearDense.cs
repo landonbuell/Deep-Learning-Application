@@ -2,6 +2,8 @@
 using NeuralNetwork.Layers.Utilities;
 using NeuralNetwork.Mathematics;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace NeuralNetwork.Layers
@@ -51,14 +53,12 @@ namespace NeuralNetwork.Layers
             Initialized = true;
         }
 
-        public override Array Call (Array inputArray)
-        {
             // Call Linear Dense Layer
             Debug.Assert(ArrayTools.GetShape(inputArray) == _shapeInput);
   
 
 
-            return inputArray;
+            return new List<double>();
         }
     }
     

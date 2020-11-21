@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Layers
@@ -44,6 +44,14 @@ namespace NeuralNetwork.Layers
 
         }
 
+
+        #region one
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="actFunc"></param>
         public BaseLayer(string name, BaseActivationFunction actFunc)
         {
             // Constructor for BaseLayer Class 
@@ -58,6 +66,8 @@ namespace NeuralNetwork.Layers
             _weightsInitializer = null;
             _biasesInitializer = null;
         }
+
+        #endregion
 
         public BaseLayer (string name, BaseActivationFunction actFunc,
             BaseInitializer weightsInit, BaseInitializer biasesInit)
@@ -128,10 +138,9 @@ namespace NeuralNetwork.Layers
             throw new NotImplementedException();
         }
 
-        public virtual Array Call(Array X)
+        public virtual ICollection<Object> Call(ICollection<Object> inputArray)
         {
-            // Call thus Layer With input Activation X
-            return X;
+            throw new NotImplementedException();
         }
-    } 
-}
+
+    }

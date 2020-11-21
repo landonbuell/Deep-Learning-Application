@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using NeuralNetwork.Layers;
-using NeuralNetwork.LayerUtilities;
+using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.ComputationalGraphs
 {

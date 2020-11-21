@@ -20,14 +20,7 @@ namespace NeuralNetwork.Mathematics
         {
             // Iterate through all elements of array recursivly
             int[] shapeX = ArrayTools.GetShape(X);
-            while (true)
-            {
-
-            }
-
-
-
-            throw new NotImplementedException();
+            for (int i = )
 
         }
 

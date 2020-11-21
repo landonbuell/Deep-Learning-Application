@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Transactions;
-using NeuralNetwork.LayerUtilities;
+using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Models
 {
