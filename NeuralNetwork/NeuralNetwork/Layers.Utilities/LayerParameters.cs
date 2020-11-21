@@ -8,9 +8,9 @@ using System.Text;
 
 namespace NeuralNetwork.Layers.Utilities
 {
-    public struct LayerParameters
+    public abstract class LayerParameters
     {
-        // Internally Defined Struct to hold Weights & Biases
+        // Object to hold weights & biases
         public int[] WeightShape { get; private set; }
         
         public int[] BiasShape { get; private set; }
@@ -37,5 +37,16 @@ namespace NeuralNetwork.Layers.Utilities
 
     }
 
-    
+    public class LinearDenseParameters : LayerParameters
+    {
+        // Weights & biases for Linear Dense layers
+
+        public LinearDenseParameters( int[] weightShape, int[] biasShape) : base(weightShape, biasShape)
+        {
+            // Constructor for Linear Dense Weighs
+
+        }
+    }
+
+   
 }

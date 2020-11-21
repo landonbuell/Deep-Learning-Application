@@ -2,7 +2,7 @@
 
 namespace NeuralNetwork.Layers
 {
-    public class InputLayer : BaseLayer
+    public class InputLayer : NetworkLayer
     {
         // Format an Input array to be digested by Neural network
 

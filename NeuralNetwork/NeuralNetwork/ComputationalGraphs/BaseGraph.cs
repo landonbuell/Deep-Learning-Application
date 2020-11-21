@@ -14,7 +14,7 @@ namespace NeuralNetwork.ComputationalGraphs
 
         public BaseGraph()
         {
-            // Constructor for BaseCoomputationalGraph (Empty)
+            // Constructor for BaseComputationalGraph (Empty)
         }
 
         

@@ -20,7 +20,7 @@ namespace NeuralNetwork
 
             NetworkA.AddLayer(new OutputLayer("Output", 2));
 
-            List<BaseLayer> NetworkALayers = NetworkA.GetLayerList;
+            List<NetworkLayer> NetworkALayers = NetworkA.GetLayerList;
 
             NetworkA.AssembleModel();
 

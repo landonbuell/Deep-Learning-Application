@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-using NeuralNetwork.Layers.Utilities;
 using NeuralNetwork.Mathematics;
 
 namespace NeuralNetwork.Layers.Utilities
 {
 
-    public class ActivationFunction
+    public abstract class ActivationFunction
     {
         // Parent Activation Function Class
 
@@ -20,6 +19,11 @@ namespace NeuralNetwork.Layers.Utilities
             Debug.Assert(ArrayTools.GetShape(inputArray) == _shapeInOut);
             return inputArray;
         }
+    }
+
+    public class Identity : ActivationFunction
+    {
+        // Identity activation Function
     }
 
     public class ReLU : ActivationFunction 

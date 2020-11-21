@@ -11,25 +11,40 @@ namespace NeuralNetwork.Layers.Utilities
         protected Type _dataType;
         protected int _randomSeed;
 
-        public BaseInitializer(int[] shape)
-        {
-            // Initializer
-        }
-
-        public static Array Call (int[] shape)
+        public virtual Array Call (int[] shape)
         {
             // Call Initializer, Return Empty array of shape
             return Array.CreateInstance(typeof(double), shape);
         }
     }
 
-    public class Uniform : BaseInitializer
+    public class UniformInitializer : BaseInitializer
     {
-        // Initialize Weights with uniform 
+        // Initialize Weights with uniform average
 
-        public Uniform(int[] shape) : base(shape)
+        public Array Call(int[] shape, double value = 0.0)
         {
-            // Constructor given initial shape
+            Array X = Array.CreateInstance(typeof(double), shape);
+
+
+            return X;
         }
+
+
+    }
+
+    public class ConstantInitializer : BaseInitializer
+    {
+
+    }
+
+    public class IdentityInitializer : BaseInitializer
+    {
+
+    }
+
+    public class GaussianIntializer : BaseInitializer
+    {
+
     }
 }

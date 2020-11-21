@@ -14,6 +14,8 @@ namespace NeuralNetwork.ComputationalGraphs
         private PointerLayer _headNode = new PointerLayer("HeadNode");
         private PointerLayer _tailNode = new PointerLayer("TailNode");
 
+        #region LinearGraphConstructors
+
         public LinearGraph() : base()
         {
             // Constructor for Computational Graph (Empty)
@@ -21,7 +23,7 @@ namespace NeuralNetwork.ComputationalGraphs
             _tailNode.PrevLayer = _headNode;
         }
             
-        public LinearGraph(BaseLayer existingLayer)
+        public LinearGraph(NetworkLayer existingLayer)
         {
             // Constructor for Computational Graph (One Node)
             _headNode.NextLayer = _tailNode;
@@ -30,7 +32,7 @@ namespace NeuralNetwork.ComputationalGraphs
             AddTailNode(existingLayer);
         }
 
-        public LinearGraph(List<BaseLayer> existingLayers)
+        public LinearGraph(List<NetworkLayer> existingLayers)
         {
             // Constructor for Computational Graph (List of Nodes)
             _headNode.NextLayer = _tailNode;
@@ -50,22 +52,28 @@ namespace NeuralNetwork.ComputationalGraphs
             _tailNode.PrevLayer.NextLayer = _tailNode;
         }
 
-        public BaseLayer GetHead
+        #endregion
+
+        #region LinearGraphProperties
+
+        public NetworkLayer GetHead
         {
             get { return _headNode; }
             private set { _headNode = (PointerLayer)value; }
         }
 
-        public BaseLayer GetTail
+        public NetworkLayer GetTail
         {
             get { return _tailNode; }
             private set { _tailNode = (PointerLayer)value; }
         }
 
-        public void AddTailNode (BaseLayer newLayer)
+        #endregion
+
+        public void AddTailNode (NetworkLayer newLayer)
         {
             // Add newNode to end of Compuational Graph
-            BaseLayer oldTail = _tailNode.PrevLayer;
+            NetworkLayer oldTail = _tailNode.PrevLayer;
             oldTail.NextLayer = newLayer;
             _tailNode.PrevLayer = newLayer;
             newLayer.PrevLayer = oldTail;
@@ -75,10 +83,10 @@ namespace NeuralNetwork.ComputationalGraphs
             SetLayerCounter(newLayer);
         }
 
-        public void AddHeadNode (BaseLayer newLayer)
+        public void AddHeadNode (NetworkLayer newLayer)
         {
             // Add newNode to top of Computational Graph
-            BaseLayer oldHead = _headNode.NextLayer;
+            NetworkLayer oldHead = _headNode.NextLayer;
             oldHead.PrevLayer = newLayer;
             _headNode.NextLayer = newLayer;
             newLayer.NextLayer = oldHead;
@@ -88,20 +96,20 @@ namespace NeuralNetwork.ComputationalGraphs
             SetLayerCounter(newLayer);
         }
 
-        public BaseLayer RemoveAtIndex (int index = -1)
+        public NetworkLayer RemoveAtIndex (int index = -1)
         {
             // Remove node at Graph Index
-            BaseLayer currentLayer = _headNode.NextLayer;
+            NetworkLayer currentLayer = _headNode.NextLayer;
             for (int i = 0; i < index; i++)
                 currentLayer = currentLayer.NextLayer;
-            BaseLayer oldPrev = currentLayer.PrevLayer;
-            BaseLayer oldNext = currentLayer.NextLayer;
+            NetworkLayer oldPrev = currentLayer.PrevLayer;
+            NetworkLayer oldNext = currentLayer.NextLayer;
             oldPrev.NextLayer = oldNext;
             oldNext.PrevLayer = oldPrev;
             return currentLayer;                
         }
 
-        private void SetLayerCounter(BaseLayer currentLayer)
+        private void SetLayerCounter(NetworkLayer currentLayer)
         {
             // Set Index on current Layer   
             try
@@ -115,13 +123,13 @@ namespace NeuralNetwork.ComputationalGraphs
             }
         }
 
-        public List<BaseLayer> GetGraphList
+        public List<NetworkLayer> GetGraphList
         {
             get
             {
-                // Get This Graph as a List
-                List<BaseLayer> graphList = new List<BaseLayer>();
-                BaseLayer currentLayer = _headNode.NextLayer;
+                // Get This Graph as a List of Layers
+                List<NetworkLayer> graphList = new List<NetworkLayer>();
+                NetworkLayer currentLayer = _headNode.NextLayer;
                 while (currentLayer != _tailNode)
                 {
                     graphList.Add(currentLayer);
