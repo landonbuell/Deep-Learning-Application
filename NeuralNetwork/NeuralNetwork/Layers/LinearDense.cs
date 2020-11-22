@@ -19,7 +19,8 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for Linear Dense Layer Class
             LayerType = "LinearDense";
-            Nodes = nodes;              
+            Nodes = nodes;
+            _layerParameters = new LinearDenseParameters();
         }
 
         public LinearDense(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
@@ -42,17 +43,20 @@ namespace NeuralNetwork.Layers
         public void Call(double [,] X)
         {
             // Call Layer w/ Inputs X
+            double[,] Z = _layerParameters.Call(X);
         }
 
-        public override void FormatLayer()
+        public override void InitializeLayer()
         {
             // Determine input,output shapes
             InputShape = PrevLayer.OutputShape;
             OutputShape = InputShape;
-
-            // Format Activations struct 
             _layerActivations = new LayerActivations(_shapeOutput);
-        }
+            int prevNodes = InputShape[1];
+
+            // Format Parameters 
+            _layerParameters = new LinearDenseParameters(new int[2] { Nodes, prevNodes },
+                                                        new int[1] { Nodes } );
 
         public override void GetLayerParams()
         {

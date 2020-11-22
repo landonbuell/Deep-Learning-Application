@@ -5,7 +5,7 @@ using NeuralNetwork.Layers.Utilities;
 namespace NeuralNetwork.Models
 {
 
-    public class LinearNetwork : BaseNetwork
+    public class LinearNetwork : Network
     {
         public LinearNetwork(string name): base(name)
         {

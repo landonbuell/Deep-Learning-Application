@@ -10,6 +10,8 @@ namespace NeuralNetwork.Layers
         // NetworkLayer Class
         // All Layers use in Neural Network Stack must inherit from here
 
+        #region LayerAttributes
+
         public string LayerName { get; protected set; }
         public string LayerType { get; protected set; }
         public int LayerIndex { get; set; }
@@ -28,6 +30,8 @@ namespace NeuralNetwork.Layers
 
         protected NetworkLayer _layerNext;
         protected NetworkLayer _layerPrev;
+
+        #endregion
 
         #region LayerConstructors
 
@@ -107,14 +111,34 @@ namespace NeuralNetwork.Layers
         }
 
         #endregion
-        
-        public virtual Array Call (Array X)
+
+        #region LayerStructs
+
+        protected struct LayerActivations
         {
-            // Call Layer w/ Inputs X
-            return X;
+            // Internally defined Struct to hold Layer Activations
+            private int[] _shape;
+            private int _rank;
+
+            public Array LinearActivations { get; set; }
+
+            public Array OutputActivations { get; set; }
+
+            public LayerActivations(int[] shape)
+            {
+                _shape = shape;
+                _rank = _shape.Length;
+
+                LinearActivations = Array.CreateInstance(typeof(double), _shape);
+                OutputActivations = Array.CreateInstance(typeof(double), _shape);
+
+            }
+
         }
 
-        public virtual void FormatLayer()
+        #endregion
+        
+        public virtual void InitializeLayer()
         {
             // Determine input,output shapes
             InputShape = PrevLayer.OutputShape;
@@ -122,6 +146,14 @@ namespace NeuralNetwork.Layers
             
             // Format Activations struct 
             _layerActivations = new LayerActivations(_shapeOutput);
+        }
+
+        public virtual Array Call(Array X)
+        {
+            // Call Layer w/ Inputs X
+            _layerActivations.LinearActivations = X;
+            _layerActivations.OutputActivations = X;
+            return X;
         }
 
         public virtual void GetLayerParams()

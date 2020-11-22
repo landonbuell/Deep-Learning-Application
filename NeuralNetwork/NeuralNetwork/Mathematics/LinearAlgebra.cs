@@ -6,7 +6,7 @@ namespace NeuralNetwork.Mathematics
 {
     public static class LinearAlgebra
     {
-        public static double[,] Transpose(double[,] A)
+        public static double[,] Transpose2D (double[,] A)
         {
             // Tranpose 2D Array A
             double[,] B = new double[A.GetLength(1),A.GetLength(0)] ;
@@ -60,6 +60,31 @@ namespace NeuralNetwork.Mathematics
                     C[i, j] = ScalarProduct(a, b);
                 }
             }
+            return C;
+        }
+    }
+
+    public static class VectorOperations
+    {
+        // Static class to perform vector operations
+
+        public static double[] VectorAdd1D (double[] A , double[] B)
+        {
+            // Element-wise addition of vectors A & B
+            Debug.Assert(A.Length == B.Length);
+            double[] C = new double[A.Length];
+            for (int i = 0; i < A.Length; i++)
+                C[i] = A[i] + B[i];
+            return C;
+        }
+
+        public static double[] VectorSub1D(double[] A, double[] B)
+        {
+            // Element-wise subtraction of vectors A & B
+            Debug.Assert(A.Length == B.Length);
+            double[] C = new double[A.Length];
+            for (int i = 0; i < A.Length; i++)
+                C[i] = A[i] - B[i];
             return C;
         }
     }
