@@ -124,10 +124,10 @@ namespace NeuralNetwork.Models
         protected void InitializeLayers()
         {
             // Iter through computational graph To Set Weight Params
-            NetworkLayer currentLayer = _layerGraph.HeadNode.NextLayer;
+            NetworkLayer currentLayer = _layerGraph.HeadNode;
             while (currentLayer != _layerGraph.TailNode)
             {
-                // Iterate through graph
+                // Iterate through graph & initialize layer
                 currentLayer.InitializeLayer();
                 currentLayer = currentLayer.NextLayer;
             }

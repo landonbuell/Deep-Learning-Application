@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\NeuralNetwork\\NeuralNetwork\\NeuralNetwork.csproj",
-      "projectName": "NeuralNetwork",
-      "projectPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\NeuralNetwork\\NeuralNetwork\\NeuralNetwork.csproj",
+      "projectUniqueName": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\Perceptron\\PerceptronClassifier\\PerceptronClassifier.csproj",
+      "projectName": "PerceptronClassifier",
+      "projectPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\Perceptron\\PerceptronClassifier\\PerceptronClassifier.csproj",
       "packagesPath": "C:\\Users\\Landon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\NeuralNetwork\\NeuralNetwork\\obj\\",
+      "outputPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\Perceptron\\PerceptronClassifier\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Landon\\AppData\\Roaming\\NuGet\\NuGet.Config",

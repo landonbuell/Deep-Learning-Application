@@ -40,12 +40,6 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        public void Call(double [,] X)
-        {
-            // Call Layer w/ Inputs X
-            double[,] Z = _layerParameters.Call(X);
-        }
-
         public override void InitializeLayer()
         {
             // Determine input,output shapes
@@ -56,7 +50,8 @@ namespace NeuralNetwork.Layers
 
             // Format Parameters 
             _layerParameters = new LinearDenseParameters(new int[2] { Nodes, prevNodes },
-                                                        new int[1] { Nodes } );
+                                                        new int[1] { Nodes });
+        }
 
         public override void GetLayerParams()
         {

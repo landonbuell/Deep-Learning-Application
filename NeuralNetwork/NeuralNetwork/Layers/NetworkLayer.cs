@@ -146,6 +146,7 @@ namespace NeuralNetwork.Layers
             
             // Format Activations struct 
             _layerActivations = new LayerActivations(_shapeOutput);
+            Initialized = true;
         }
 
         public virtual Array Call(Array X)

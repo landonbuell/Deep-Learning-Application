@@ -42,6 +42,13 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
+        public override void InitializeLayer()
+        {
+            // Determine input,output shapes
+            _layerActivations = new LayerActivations(_shapeOutput);
+            Initialized = true;
+        }
+
 
     }
 
