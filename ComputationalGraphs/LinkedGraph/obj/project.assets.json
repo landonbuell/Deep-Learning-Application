@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedTree\\LinkedTree.csproj",
-      "projectName": "LinkedTree",
-      "projectPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedTree\\LinkedTree.csproj",
+      "projectUniqueName": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj",
+      "projectName": "LinkedGraph",
+      "projectPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj",
       "packagesPath": "C:\\Users\\Landon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedTree\\obj\\",
+      "outputPath": "C:\\Users\\Landon\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
