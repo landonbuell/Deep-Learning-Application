@@ -8,7 +8,7 @@ namespace NeuralNetwork.Layers
     public abstract class NetworkLayer
     {
         // NetworkLayer Class
-        // All Layers use in Neural Network Stack must inherit from here
+        // All Layers use in Neural Network Queue must inherit from here
 
         #region LayerAttributes
 
