@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Numerics;
 using System.Data;
 
@@ -13,6 +14,15 @@ namespace NeuralNetwork.Mathematics
             for (int i = 0; i < A.GetLength(0); i++)
                 for (int j = 0; j < A.GetLength(1); j++)
                     B[i, j] = A[j, i];
+            return B;
+        }
+
+        public static double[,] Transpose1D (double[] A)
+        {
+            // Transpose 1D Array A
+            double[,] B = new double[A.GetLength(0),1];
+            for (int i = 0; i < A.GetLength(0); i++)
+                B[i, 0] = A[i];
             return B;
         }
 
@@ -61,6 +71,12 @@ namespace NeuralNetwork.Mathematics
                 }
             }
             return C;
+        }
+
+        public static double[,] MatrixProduct2D(double[,] A, double[] B)
+        {
+            // Compute Matrix Product of A & B
+            throw new NotImplementedException;
         }
     }
 

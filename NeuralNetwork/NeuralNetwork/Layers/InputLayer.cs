@@ -8,17 +8,17 @@ namespace NeuralNetwork.Layers
     {
         // Format an Input array to be digested by Neural network
 
+        protected new Layer _layerPrev;
+
         #region InputLayerConstructors
 
         public InputLayer(string name, int[] sampleShape, int batchSize = 1) : base(name)
         {
             // Constructor for Input Layer
             LayerType = "InputLayer";
-            _batchSize = batchSize;
 
             // Determine input & Output Shape
             int[] inputShape = new int[1 + sampleShape.Length];
-            inputShape[0] = _batchSize;
             sampleShape.CopyTo(inputShape, 1);
             InputShape = inputShape;
             OutputShape = InputShape;
@@ -30,11 +30,9 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for Input Layer
             LayerType = "InputLayer";
-            _batchSize = batchSize;
 
             // Determine input & Output Shape
             int[] inputShape = new int[1 + sampleShape.Length];
-            inputShape[0] = _batchSize;
             sampleShape.CopyTo(inputShape, 1);
             InputShape = inputShape;
             OutputShape = InputShape;

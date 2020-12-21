@@ -29,8 +29,6 @@ namespace NeuralNetwork.Layers.Utilities
 
             return X;
         }
-
-
     }
 
     public class ConstantInitializer : BaseInitializer

@@ -24,11 +24,11 @@ namespace NeuralNetwork.Models
         protected int _layerCounter;
         protected bool _isAssembled;
 
-        protected List<NetworkLayer> _layerList;
+        protected List<Layer> _layerList;
         protected LinearGraph _layerGraph;
 
-        protected Optimizer _Optimizer;
-        protected ObjectiveFunction _Objective;
+        protected Optimizer _optimizer;
+        protected ObjectiveFunction _objective;
 
 
         #region NetworkConstructors
@@ -43,7 +43,7 @@ namespace NeuralNetwork.Models
 
             // Intialize Graph & layer List for this Model
             this._layerGraph = new LinearGraph();
-            this._layerList = new List<NetworkLayer>();
+            this._layerList = new List<Layer>();
         }
 
         public Network(string name, LinearGraph existingGraph)
@@ -55,7 +55,7 @@ namespace NeuralNetwork.Models
 
             // Intialize Graph & layer List for this Model
             this._layerGraph = existingGraph;
-            this._layerList = existingGraph.GetGraphList;
+            this._layerList = existingGraph.GraphList;
             this._layerCounter = _layerList.Count;
         }
 
@@ -68,7 +68,7 @@ namespace NeuralNetwork.Models
 
             // Intialize Graph & layer List for this Model
             this._layerGraph = new LinearGraph(exisitingLayers);
-            this._layerList = _layerGraph.GetGraphList;
+            this._layerList = _layerGraph.GraphList;
             this._layerCounter = _layerList.Count;
         }
 
@@ -76,21 +76,21 @@ namespace NeuralNetwork.Models
 
         #region NetworkProperties
 
-        public List<NetworkLayer> GetLayerList 
+        public List<Layer> LayerList 
         { 
-            get { return _layerGraph.GetGraphList; }
+            get { return _layerGraph.GraphList; }
         }
 
         public Optimizer ModelOptimizer
         {
-            get { return _Optimizer; }
-            protected set { _Optimizer = value; }
+            get { return _optimizer; }
+            protected set { _optimizer = value; }
         }
 
         public ObjectiveFunction ObjectiveFunction
         {
-            get { return _Objective; }
-            protected set { _Objective = value; }
+            get { return _objective; }
+            protected set { _objective = value; }
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace NeuralNetwork.Models
         {
             // Add New Layer to the Tail of Graph             
             _layerGraph.AddTailNode(newLayer);
-            _layerList = _layerGraph.GetGraphList;
+            _layerList = _layerGraph.GraphList;
             _layerCounter = _layerList.Count;
             return this;
         }
@@ -109,35 +109,14 @@ namespace NeuralNetwork.Models
             // Remove Layer At Index
             throw new NotImplementedException();
         }
-    
-        public Network AssembleModel()
-        {
-            // Prepare this Model for Usage
-            BatchSize = _layerList[0].InputShape[0];
-            InitializeLayers();
-                
-                
-            _isAssembled = true;
-            return this;
-        }
 
-        protected void InitializeLayers()
-        {
-            // Iter through computational graph To Set Weight Params
-            NetworkLayer currentLayer = _layerGraph.HeadNode;
-            while (currentLayer != _layerGraph.TailNode)
-            {
-                // Iterate through graph & initialize layer
-                currentLayer.InitializeLayer();
-                currentLayer = currentLayer.NextLayer;
-            }
-        }
+        #region CallNetwork
 
-        protected Array Call (Array input)
+        protected double[] Call (double[] input)
         {
             // Execute Forward Pass on this model
-            NetworkLayer currentLayer = _layerGraph.HeadNode.NextLayer;
-            Array X = input;
+            Layer currentLayer = _layerGraph.HeadNode.NextLayer;
+            double[] X = input;
 
             // Pass Through the Network
             while (currentLayer != _layerGraph.TailNode)
@@ -149,6 +128,59 @@ namespace NeuralNetwork.Models
             // Return the Last Activations Object
             return X;
         }
+
+        protected double[,] Call(double[,] input)
+        {
+            // Execute Forward Pass on this model
+            Layer currentLayer = _layerGraph.HeadNode.NextLayer;
+            double[,] X = input;
+
+            // Pass Through the Network
+            while (currentLayer != _layerGraph.TailNode)
+            {
+                // Iterate through graph
+                X = currentLayer.Call(X);
+                currentLayer = currentLayer.NextLayer;
+            }
+            // Return the Last Activations Object
+            return X;
+        }
+
+        protected double[,,] Call(double[,,] input)
+        {
+            // Execute Forward Pass on this model
+            Layer currentLayer = _layerGraph.HeadNode.NextLayer;
+            double[,,] X = input;
+
+            // Pass Through the Network
+            while (currentLayer != _layerGraph.TailNode)
+            {
+                // Iterate through graph
+                X = currentLayer.Call(X);
+                currentLayer = currentLayer.NextLayer;
+            }
+            // Return the Last Activations Object
+            return X;
+        }
+
+        protected double[,,,] Call(double[,,,] input)
+        {
+            // Execute Forward Pass on this model
+            Layer currentLayer = _layerGraph.HeadNode.NextLayer;
+            double[,,,] X = input;
+
+            // Pass Through the Network
+            while (currentLayer != _layerGraph.TailNode)
+            {
+                // Iterate through graph
+                X = currentLayer.Call(X);
+                currentLayer = currentLayer.NextLayer;
+            }
+            // Return the Last Activations Object
+            return X;
+        }
+
+        #endregion
 
         public void Fit (double[,] X , int[,] Y , int batchSize , int epochs)
         {
@@ -162,6 +194,31 @@ namespace NeuralNetwork.Models
             throw new NotImplementedException();
         }
 
+        #region NetworkMethods
+
+        public Network AssembleModel()
+        {
+            // Prepare this Model for Usage
+            BatchSize = _layerList[0].InputShape[0];
+            InitializeLayers();
+
+
+            _isAssembled = true;
+            return this;
+        }
+
+        protected void InitializeLayers()
+        {
+            // Iter through computational graph To Set Weight Params
+            Layer currentLayer = _layerGraph.HeadNode;
+            while (currentLayer != _layerGraph.TailNode)
+            {
+                // Iterate through graph & initialize layer
+                currentLayer.InitializeLayer();
+                currentLayer = currentLayer.NextLayer;
+            }
+        }
+
         public virtual void ModelSummary()
         {
             // Print Summary of this Model's Layers and Parameters
@@ -170,7 +227,9 @@ namespace NeuralNetwork.Models
                
         }
 
+        #endregion
+
     }
-    
+
 }
     

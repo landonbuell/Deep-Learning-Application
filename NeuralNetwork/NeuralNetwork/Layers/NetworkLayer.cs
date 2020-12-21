@@ -5,17 +5,12 @@ using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Layers
 {
-    public abstract class NetworkLayer
+    public abstract class NetworkLayer : Layer
     {
         // NetworkLayer Class
         // All Layers use in Neural Network Queue must inherit from here
 
         #region LayerAttributes
-
-        public string LayerName { get; protected set; }
-        public string LayerType { get; protected set; }
-        public int LayerIndex { get; set; }
-        public bool Initialized { get; protected set; }
 
         protected ActivationFunction _activationFunction;
         protected LayerActivations _layerActivations;
@@ -24,21 +19,13 @@ namespace NeuralNetwork.Layers
         protected BaseInitializer _weightsInitializer;
         protected BaseInitializer _biasesInitializer;
 
-        protected int _batchSize;
-        protected int[] _shapeInput;
-        protected int[] _shapeOutput;
-
-        protected NetworkLayer _layerNext;
-        protected NetworkLayer _layerPrev;
-
         #endregion
 
         #region LayerConstructors
 
-        public NetworkLayer(string name) 
+        public NetworkLayer(string name) : base(name)
         {
             // Constructor for BaseLayer Class (Given only name)
-            LayerName = name;
             LayerType = "NetworkLayer";
             Initialized = false;
 
@@ -49,10 +36,9 @@ namespace NeuralNetwork.Layers
 
         }
 
-        public NetworkLayer(string name, ActivationFunction actFunc) 
+        public NetworkLayer(string name, ActivationFunction actFunc) : base(name)
         {
             // Constructor for BaseLayer Class 
-            LayerName = name;
             LayerType = "NetworkLayer";
             Initialized = false;
 
@@ -63,10 +49,9 @@ namespace NeuralNetwork.Layers
         }
 
         public NetworkLayer(string name, ActivationFunction actFunc,
-            BaseInitializer weightsInit, BaseInitializer biasesInit) 
+            BaseInitializer weightsInit, BaseInitializer biasesInit) : base(name)
         {
             // Constructor for BaseLayer Class 
-            LayerName = name;
             LayerType = "BaseLayer";
 
             // Set some default properties
@@ -80,81 +65,51 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        #region LayerProperties
+        #region CallNetworkLayer
 
-        public NetworkLayer NextLayer
+        public new virtual double[] Call(double[] X)
         {
-            // Get or Set Next Layer
-            get { return _layerNext; }
-            set { _layerNext = value; }
+            // Call Layer w/ 1D Inputs X
+            _layerActivations.LinearActivations = X;
+            _layerActivations.OutputActivations = X;
+            return X;
         }
 
-        public NetworkLayer PrevLayer
+        public new virtual double[,] Call(double[,] X)
         {
-            // Get or Set Previous Layer
-            get { return _layerPrev; }
-            set { _layerPrev = value; }
+            // Call Layer w/ 2D Inputs X
+            _layerActivations.LinearActivations = X;
+            _layerActivations.OutputActivations = X;
+            return X;
         }
 
-        public int[] InputShape
+        public new virtual double[,,] Call(double[,,] X)
         {
-            // Get or set input array shape
-            get { return _shapeInput; }
-            set { _shapeInput = value; }
+            // Call Layer w/ 3D Inputs X
+            _layerActivations.LinearActivations = X;
+            _layerActivations.OutputActivations = X;
+            return X;
         }
 
-        public int[] OutputShape
+        public new virtual double[,,,] Call(double[,,,] X)
         {
-            // Get or set output array shape
-            get { return _shapeOutput; }
-            set { _shapeOutput = value; }
-        }
-
-        #endregion
-
-        #region LayerStructs
-
-        protected struct LayerActivations
-        {
-            // Internally defined Struct to hold Layer Activations
-            private int[] _shape;
-            private int _rank;
-
-            public Array LinearActivations { get; set; }
-
-            public Array OutputActivations { get; set; }
-
-            public LayerActivations(int[] shape)
-            {
-                _shape = shape;
-                _rank = _shape.Length;
-
-                LinearActivations = Array.CreateInstance(typeof(double), _shape);
-                OutputActivations = Array.CreateInstance(typeof(double), _shape);
-
-            }
-
+            // Call Layer w/ 4D Inputs X
+            _layerActivations.LinearActivations = X;
+            _layerActivations.OutputActivations = X;
+            return X;
         }
 
         #endregion
-        
-        public virtual void InitializeLayer()
+
+        public new virtual void InitializeLayer()
         {
             // Determine input,output shapes
             InputShape = PrevLayer.OutputShape;
             OutputShape = InputShape;
-            
-            // Format Activations struct 
-            _layerActivations = new LayerActivations(_shapeOutput);
-            Initialized = true;
-        }
 
-        public virtual Array Call(Array X)
-        {
-            // Call Layer w/ Inputs X
-            _layerActivations.LinearActivations = X;
-            _layerActivations.OutputActivations = X;
-            return X;
+            // Format Activations Object
+
+
         }
 
         public virtual void GetLayerParams()

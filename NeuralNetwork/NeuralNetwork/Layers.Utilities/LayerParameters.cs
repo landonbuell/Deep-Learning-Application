@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NeuralNetwork.Layers.Utilities
 {
-    public struct LayerParameters
+    public abstract class LayerParameters
     {
 
         public int[] WeightShape { get; private set; }

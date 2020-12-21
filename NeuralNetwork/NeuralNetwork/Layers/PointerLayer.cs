@@ -8,7 +8,7 @@ using System.Text;
 
 namespace NeuralNetwork.Layers
 {
-    public class PointerLayer : NetworkLayer
+    public class PointerLayer : Layer
     {
         // Pointer Layer Only Points to another layer
         // Is used as Head/Tail Nodes in Layer Graph
@@ -21,10 +21,6 @@ namespace NeuralNetwork.Layers
             PrevLayer = null;
         }
 
-        public override void InitializeLayer()
-        {
-            // Initialize Pointer Layer (Do nothing)
-            Initialized = true;
-        }
+        
     }   
 }
