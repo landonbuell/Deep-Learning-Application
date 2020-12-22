@@ -76,7 +76,7 @@ namespace NeuralNetwork.Mathematics
         public static double[,] MatrixProduct2D(double[,] A, double[] B)
         {
             // Compute Matrix Product of A & B
-            throw new NotImplementedException;
+            throw new NotImplementedException();
         }
     }
 

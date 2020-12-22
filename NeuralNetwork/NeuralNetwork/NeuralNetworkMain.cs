@@ -13,10 +13,10 @@ namespace NeuralNetwork
         {
             LinearNetwork NetworkA = new LinearNetwork("NetworkA");
 
-            NetworkA.AddLayer(new InputLayer("Input", new int[] {4}));
+            NetworkA.AddLayer(new InputLayer("Input", new int[] {2, 4}));
             
-            NetworkA.AddLayer(new LinearDense("Dense1", 8));
-            NetworkA.AddLayer(new LinearDense("Dense2", 10));
+            NetworkA.AddLayer(new Dense("Dense1", 8));
+            NetworkA.AddLayer(new Dense("Dense2", 10));
 
             NetworkA.AddLayer(new OutputLayer("Output", 2));
 

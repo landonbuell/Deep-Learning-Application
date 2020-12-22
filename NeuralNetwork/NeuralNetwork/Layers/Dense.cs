@@ -20,7 +20,7 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType);
+            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
             
         }
 
@@ -29,7 +29,7 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType);
+            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
         }
 
         public Dense(string name, int nodes, ActivationFunction actFunc,
@@ -38,53 +38,21 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType);
+            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
         }
 
         #endregion
-
-        #region DenseActivations
-
-        internal class DenseActivations : LayerActivations
-        {
-            // Activations for Linear Dense layers
-            public new double[,] Linear { get; set; }
-            public new double[,] Final { get; set; }
-
-            internal DenseActivations(string name, string type) : base(name, type)
-            {
-                // Constructor for Linear Dense Layers
-
-            }
-        }
-
-        #endregion
-
-        #region DenseParameters
-
-        protected class DenseParameters : LayerParameters
-        {
-            // Parameters Object for Linear Dense Layer
-        }
-
-        #endregion
-
-        public new virtual void InitializeLayer()
+      
+        public override void InitializeLayer()
         {
             // Determine Input Shape
-            InputShape[0] = 1;
-            InputShape[1] = PrevLayer.OutputShape[1];
-
-            // Determine Output Shape
-            OutputShape[0] = 1;
+            BatchSize = PrevLayer.BatchSize;
+            InputShape = PrevLayer.OutputShape;
+            OutputShape[0] = BatchSize;
             OutputShape[1] = Nodes;
 
-            // Activeations Shape
-            _layerActivations.Shape = OutputShape;
-            
-            // Weight + Bias Shape
-
-                               
+            // Activations Shape
+            _layerActivations.UpdateShapes(OutputShape);                        
         }
 
         public override void GetLayerParams()
@@ -120,7 +88,5 @@ namespace NeuralNetwork.Layers
         }
 
         #endregion
-
     }
-
 }

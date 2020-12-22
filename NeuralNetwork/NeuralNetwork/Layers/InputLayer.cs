@@ -43,7 +43,7 @@ namespace NeuralNetwork.Layers
         public override void InitializeLayer()
         {
             // Determine input,output shapes
-            _layerActivations = new LayerActivations(_shapeOutput);
+            _layerActivations = new LayerActivations(LayerName,LayerType);
             Initialized = true;
         }
 

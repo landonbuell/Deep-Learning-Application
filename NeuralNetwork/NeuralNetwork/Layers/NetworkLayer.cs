@@ -8,7 +8,7 @@ namespace NeuralNetwork.Layers
     public abstract class NetworkLayer : Layer
     {
         // NetworkLayer Class
-        // All Layers use in Neural Network Queue must inherit from here
+        // All NetworkLayers have Weights, Biases, Activations
 
         #region LayerAttributes
 
@@ -27,7 +27,6 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for BaseLayer Class (Given only name)
             LayerType = "NetworkLayer";
-            Initialized = false;
 
             // Set Activation Function Instance & Initializers
             _activationFunction = new Identity();
@@ -40,7 +39,6 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for BaseLayer Class 
             LayerType = "NetworkLayer";
-            Initialized = false;
 
             // Set Activation Function Instance & Initializers
             _activationFunction = actFunc;
@@ -54,49 +52,10 @@ namespace NeuralNetwork.Layers
             // Constructor for BaseLayer Class 
             LayerType = "BaseLayer";
 
-            // Set some default properties
-            Initialized = false;
-
             // Set Activation Function Instance & Initializers
             _activationFunction = actFunc;
             _weightsInitializer = weightsInit;
             _biasesInitializer = biasesInit;
-        }
-
-        #endregion
-
-        #region CallNetworkLayer
-
-        public new virtual double[] Call(double[] X)
-        {
-            // Call Layer w/ 1D Inputs X
-            _layerActivations.LinearActivations = X;
-            _layerActivations.OutputActivations = X;
-            return X;
-        }
-
-        public new virtual double[,] Call(double[,] X)
-        {
-            // Call Layer w/ 2D Inputs X
-            _layerActivations.LinearActivations = X;
-            _layerActivations.OutputActivations = X;
-            return X;
-        }
-
-        public new virtual double[,,] Call(double[,,] X)
-        {
-            // Call Layer w/ 3D Inputs X
-            _layerActivations.LinearActivations = X;
-            _layerActivations.OutputActivations = X;
-            return X;
-        }
-
-        public new virtual double[,,,] Call(double[,,,] X)
-        {
-            // Call Layer w/ 4D Inputs X
-            _layerActivations.LinearActivations = X;
-            _layerActivations.OutputActivations = X;
-            return X;
         }
 
         #endregion
@@ -108,7 +67,7 @@ namespace NeuralNetwork.Layers
             OutputShape = InputShape;
 
             // Format Activations Object
-
+            
 
         }
 
