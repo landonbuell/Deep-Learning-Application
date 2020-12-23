@@ -8,14 +8,14 @@ using NeuralNetwork.Mathematics;
 
 namespace NeuralNetwork.Layers
 {    
-    public class Dense : NetworkLayer
+    public class DenseLayer : NetworkLayer
     {
 
         public int Nodes { get; protected set; }
 
         #region DenseConstructors
 
-        public Dense(string name, int nodes) : base(name)
+        public DenseLayer(string name, int nodes) : base(name)
         {
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
@@ -24,7 +24,7 @@ namespace NeuralNetwork.Layers
             
         }
 
-        public Dense(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
+        public DenseLayer(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
         {
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
@@ -32,7 +32,7 @@ namespace NeuralNetwork.Layers
             _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
         }
 
-        public Dense(string name, int nodes, ActivationFunction actFunc,
+        public DenseLayer(string name, int nodes, ActivationFunction actFunc,
             BaseInitializer weightsInit , BaseInitializer biasesInit) : base(name,actFunc,weightsInit,biasesInit)
         {
             // Constructor for Linear Dense Layer Class
@@ -47,7 +47,7 @@ namespace NeuralNetwork.Layers
         {
             // Determine Input Shape
             BatchSize = PrevLayer.BatchSize;
-            InputShape = PrevLayer.OutputShape;
+            InputShape = new int[] { 1, PrevLayer.OutputShape[0] };
             OutputShape[0] = BatchSize;
             OutputShape[1] = Nodes;
 
@@ -66,6 +66,7 @@ namespace NeuralNetwork.Layers
         public new virtual double[] Call(double[] X)
         {
             // Call Layer w/ 1D Inputs X
+            Debug.Assert(X.Length == )
             return X;
         }
 
@@ -78,13 +79,13 @@ namespace NeuralNetwork.Layers
         public new virtual double[,,] Call(double[,,] X)
         {
             // Call Layer w/ 3D Inputs X
-            throw new RankException();
+            throw new RankException("Rank invalid, must be <= 2");
         }
 
         public new virtual double[,,,] Call(double[,,,] X)
         {
             // Call Layer w/ 4D Inputs X
-            throw new RankException();
+            throw new RankException("Rank invalid, must be <= 2");
         }
 
         #endregion

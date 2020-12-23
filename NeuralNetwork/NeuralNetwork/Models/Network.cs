@@ -16,7 +16,6 @@ namespace NeuralNetwork.Models
         // Base Model Class - All Inheritance from here
 
         public string ModelName { get; protected set; }
-
         public string ModelType { get; protected set; }
 
         public int BatchSize { get; protected set; }

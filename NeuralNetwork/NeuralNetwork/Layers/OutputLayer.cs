@@ -1,6 +1,6 @@
 ﻿namespace NeuralNetwork.Layers
 {
-    public class OutputLayer : Dense
+    public class OutputLayer : DenseLayer
     {
 
         public OutputLayer(string name, int nodes) : base(name, nodes)
