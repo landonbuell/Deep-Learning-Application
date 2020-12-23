@@ -6,6 +6,7 @@ namespace RegressionPerceptron
 {
     public abstract class Perceptron
     {
+        // Parent Perceptron 
         public string ModelName { get; protected set; }
         public string ModelType { get; protected set; }
         public int CurrentBatchSize { get; protected set; }
@@ -16,8 +17,13 @@ namespace RegressionPerceptron
         protected ModelActivations _activations;
         protected ModelParameters _parameters;
 
+        protected int[] _weightShape;
+        protected int[] _biasShape;
+
         protected Initializer _weightsInitializer;
         protected Initializer _biasInitializer;
+
+        #region PerceptronConstructors
 
         public Perceptron(string name, int inputNodes)
         {
@@ -25,7 +31,7 @@ namespace RegressionPerceptron
             ModelName = name;
             ModelType = "BasePerceptron";
             _inputNodes = inputNodes;
-
+            CurrentBatchSize = 1;
             // Other Parameters
 
         }
@@ -37,10 +43,15 @@ namespace RegressionPerceptron
             ModelName = name;
             ModelType = "BasePerceptron";
             _inputNodes = inputNodes;
+            CurrentBatchSize = 1;
 
             // Other Parameters
+            _weightsInitializer = weightsInit;
+            _biasInitializer = biasInit;
 
         }
+
+        #endregion
 
 
     }
