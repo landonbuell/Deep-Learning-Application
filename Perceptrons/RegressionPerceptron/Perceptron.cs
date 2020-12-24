@@ -53,6 +53,18 @@ namespace RegressionPerceptron
 
         #endregion
 
+        public virtual double[] Call(double[] X)
+        {
+            // Call perceptron with Inputs X
+            return X;
+        }
+
+        public virtual double[,] Call(double[,] X)
+        {
+            // Call perceptron with Inputs X
+            return X;
+        }
+
 
     }
 }

@@ -12,11 +12,31 @@ namespace RegressionPerceptron
         public PerceptronRegressor(string name, int inputNodes) : base(name, inputNodes)
         {
             // Constructor for PerceptronRegressor
-            ModelType = "PerceotronRegressor";
+            ModelType = "PerceptronRegressor";
             _outputNodes = 1;
 
             // Weights Initializer
+
         }
+
+        #region CallRegressor
+
+        public override double[] Call(double[] X)
+        {
+            // Call perceptron with Inputs X
+            double[,] weights = _parameters.
+            double[,] WxTransp = LinearAlgebra.MatrixMultiply(X, );
+
+            return X;
+        }
+
+        public override double[,] Call(double[,] X)
+        {
+            // Call perceptron with Inputs X
+            return X;
+        }
+
+        #endregion
 
     }
 }
