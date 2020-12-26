@@ -20,8 +20,7 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
-            
+            _layerActivations = new Activations2D();  
         }
 
         public DenseLayer(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
@@ -29,30 +28,38 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
+            _layerActivations = new Activations2D();
         }
 
         public DenseLayer(string name, int nodes, ActivationFunction actFunc,
-            BaseInitializer weightsInit , BaseInitializer biasesInit) : base(name,actFunc,weightsInit,biasesInit)
+            Initializer weightsInit , Initializer biasesInit) : base(name,actFunc,weightsInit,biasesInit)
         {
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new DenseActivations(LayerName, LayerType, Nodes);
+            _layerActivations = new Activations2D();
         }
 
         #endregion
       
-        public override void InitializeLayer()
+        public new void InitializeLayer()
         {
-            // Determine Input Shape
-            BatchSize = PrevLayer.BatchSize;
-            InputShape = new int[] { 1, PrevLayer.OutputShape[0] };
-            OutputShape[0] = BatchSize;
-            OutputShape[1] = Nodes;
+            // Determine Shapes
+            InputShape = PrevLayer.OutputShape;
+            OutputShape = new int[2] { InputShape[0], Nodes };
 
-            // Activations Shape
-            _layerActivations.UpdateShapes(OutputShape);                        
+            // Get Shapes of Layer Parameters
+            int[] shapeWeights = new int[] { InputShape[1], Nodes};
+            int[] shapeBiases = new int[] { Nodes };
+            _initializerWeights.Shape = shapeWeights;
+            _initializerBiases.Shape = shapeBiases;
+
+            // Initialize Layer Parameters
+            _layerParameters = new DenseParameters(shapeWeights,shapeBiases);
+            _layerParameters.InitializeParameters(_initializerWeights, _initializerBiases);
+
+            // Housekeeping 
+            Initialized = true;
         }
 
         public override void GetLayerParams()
@@ -66,7 +73,7 @@ namespace NeuralNetwork.Layers
         public new virtual double[] Call(double[] X)
         {
             // Call Layer w/ 1D Inputs X
-            Debug.Assert(X.Length == )
+            
             return X;
         }
 

@@ -187,7 +187,7 @@ namespace NeuralNetwork.Models
             throw new NotImplementedException();
         }
 
-        public void Predict (double[,] X, int[,] Y, int batchSize)
+        public void Predict (double[,] X, int batchSize)
         {
             // Fit Model to Input Data
             throw new NotImplementedException();
@@ -195,15 +195,12 @@ namespace NeuralNetwork.Models
 
         #region NetworkMethods
 
-        public Network AssembleModel()
+        public void AssembleModel()
         {
             // Prepare this Model for Usage
             BatchSize = _layerList[0].InputShape[0];
             InitializeLayers();
-
-
             _isAssembled = true;
-            return this;
         }
 
         protected void InitializeLayers()
@@ -222,8 +219,7 @@ namespace NeuralNetwork.Models
         {
             // Print Summary of this Model's Layers and Parameters
             if (_isAssembled == false) { throw new Exception(); }
-            Console.WriteLine("\n{0} Summary:",ModelName);
-               
+            Console.WriteLine("\n{0} Summary:",ModelName);          
         }
 
         #endregion

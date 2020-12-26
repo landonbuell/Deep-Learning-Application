@@ -7,7 +7,7 @@ namespace NeuralNetwork.Mathematics
 {
     public static class LinearAlgebra
     {
-        public static double[,] Transpose2D (double[,] A)
+        public static double[,] Transpose (double[,] A)
         {
             // Tranpose 2D Array A
             double[,] B = new double[A.GetLength(1),A.GetLength(0)] ;
@@ -17,13 +17,11 @@ namespace NeuralNetwork.Mathematics
             return B;
         }
 
-        public static double[,] Transpose1D (double[] A)
+        public static double[,] Transpose (double[] A)
         {
             // Transpose 1D Array A
-            double[,] B = new double[A.GetLength(0),1];
-            for (int i = 0; i < A.GetLength(0); i++)
-                B[i, 0] = A[i];
-            return B;
+            double[,] B = ArrayTools.Make2D(A);
+            return Transpose(A);
         }
 
         public static double[] GetRow(double[,] A, int row)
@@ -56,7 +54,7 @@ namespace NeuralNetwork.Mathematics
             return C;
         }
 
-        public static double[,] MatrixProduct2D (double[,] A, double[,] B)
+        public static double[,] MatrixProduct (double[,] A, double[,] B)
         {
             // Compute Matrix Product of A & B
             Debug.Assert(A.GetLength(1) == B.GetLength(0));
@@ -73,10 +71,18 @@ namespace NeuralNetwork.Mathematics
             return C;
         }
 
-        public static double[,] MatrixProduct2D(double[,] A, double[] B)
+        public static double[,] MatrixProduct (double[,] A, double[] B)
         {
             // Compute Matrix Product of A & B
-            throw new NotImplementedException();
+            double[,] C = LinearAlgebra.Transpose(B);
+            return MatrixProduct(A, C);
+        }
+
+        public static double[,] MatrixProduct (double[] A, double[,] B)
+        {
+            // Compute Matrix Product of A & B
+            double[,] C = ArrayTools.Make2D(A);
+            return MatrixProduct(C, B);
         }
     }
 

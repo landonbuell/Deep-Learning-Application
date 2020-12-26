@@ -6,34 +6,11 @@ namespace NeuralNetwork.Layers
 {
     public abstract class Layer
     {
-
         protected Layer _layerNext;
         protected Layer _layerPrev;
 
         protected int[] _shapeInput;
         protected int[] _shapeOutput;
-
-        #region LayerConstructors
-
-        public Layer(string name)
-        {
-            // Constructor for Base Layer Type
-            LayerName = name;
-            LayerType = "Layer";
-            BatchSize = 1;
-        }
-
-        public Layer(string name, int batchSize)
-        {
-            // Constructor for Base Layer Type
-            LayerName = name;
-            LayerType = "Layer";
-            BatchSize = batchSize; ;
-        }
-
-        #endregion
-
-        #region LayerProperties
 
         public string LayerName { get; protected set; }
         public string LayerType { get; protected set; }
@@ -41,7 +18,18 @@ namespace NeuralNetwork.Layers
         public int LayerIndex { get; set; }
         public bool Initialized { get; protected set; }
 
-        public int BatchSize { get; set; }
+        #region LayerConstructors
+
+        public Layer(string name)
+        {
+            // Constructor for Base Layer Type
+            LayerName = name;
+            LayerType = "Layer";           
+        }
+
+        #endregion
+
+        #region LayerProperties
 
         public Layer NextLayer
         {

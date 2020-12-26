@@ -8,8 +8,6 @@ namespace NeuralNetwork.Layers
     {
         // Format an Input array to be digested by Neural network
 
-        protected new Layer _layerPrev;
-
         #region InputLayerConstructors
 
         public InputLayer(string name, int[] sampleShape, int batchSize = 1) : base(name)
@@ -43,7 +41,7 @@ namespace NeuralNetwork.Layers
         public override void InitializeLayer()
         {
             // Determine input,output shapes
-            _layerActivations = new LayerActivations(LayerName,LayerType);
+
             Initialized = true;
         }
 

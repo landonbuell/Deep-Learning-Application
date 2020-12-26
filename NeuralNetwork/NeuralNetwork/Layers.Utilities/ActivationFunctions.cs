@@ -13,12 +13,33 @@ namespace NeuralNetwork.Layers.Utilities
 
         public int[] _shapeInOut { get; protected set; }
 
-        public virtual Array Call (Array inputArray)
+        #region CallActivationFunction
+
+        public virtual double[] Call(double[] X)
         {
-            // Apply Activation Function to Inputs X
-            Debug.Assert(ArrayTools.GetShape(inputArray) == _shapeInOut);
-            return inputArray;
+            // Call Function w/ 1D Inputs X
+            return X;
         }
+
+        public virtual double[,] Call(double[,] X)
+        {
+            // Call Function w/ 2D Inputs X
+            return X;
+        }
+
+        public virtual double[,,] Call(double[,,] X)
+        {
+            // Call Function w/ 3D Inputs X
+            return X;
+        }
+
+        public virtual double[,,,] Call(double[,,,] X)
+        {
+            // Call Function w/ 4D Inputs X
+            return X;
+        }
+
+        #endregion
     }
 
     public class Identity : ActivationFunction
@@ -30,19 +51,6 @@ namespace NeuralNetwork.Layers.Utilities
     {
         // Rectified Linear Unit Activation Function
 
-        public override Array Call(Array inputArray)
-        {
-            // Apply Activation Function to Inputs X
-            Debug.Assert(ArrayTools.GetShape(inputArray) == _shapeInOut);
-            for (int i = 0; i < inputArray.Length; i++)
-            {
-                // Visit Every item in the array
-                if (i < 0) { }
-            }
-            
-
-            return inputArray;
-        }
 
     }
 

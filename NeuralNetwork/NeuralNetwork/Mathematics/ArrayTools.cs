@@ -16,10 +16,13 @@ namespace NeuralNetwork.Mathematics
             return shape;
         }
 
-        public static void Iterate(Array X)
+        public static double[,] Make2D (double[] A)
         {
-            // Iterate through all elements of array recursivly
-
+            // Make Input Array A into 2D Array
+            double[,] B = new double[1, A.Length];
+            for (int i = 0; i < A.Length; i++)
+                B[0, i] = A[i];
+            return B;
         }
 
     }

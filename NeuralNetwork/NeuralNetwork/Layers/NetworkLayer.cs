@@ -16,8 +16,8 @@ namespace NeuralNetwork.Layers
         protected LayerActivations _layerActivations;
         protected LayerParameters _layerParameters;
 
-        protected BaseInitializer _weightsInitializer;
-        protected BaseInitializer _biasesInitializer;
+        protected Initializer _initializerWeights;
+        protected Initializer _initializerBiases;
 
         #endregion
 
@@ -30,9 +30,8 @@ namespace NeuralNetwork.Layers
 
             // Set Activation Function Instance & Initializers
             _activationFunction = new Identity();
-            _weightsInitializer = new UniformInitializer();
-            _biasesInitializer = new UniformInitializer();
-
+            _initializerWeights = new ConstantInitializer(0.0);
+            _initializerBiases = new ConstantInitializer(0.0);
         }
 
         public NetworkLayer(string name, ActivationFunction actFunc) : base(name)
@@ -42,20 +41,20 @@ namespace NeuralNetwork.Layers
 
             // Set Activation Function Instance & Initializers
             _activationFunction = actFunc;
-            _weightsInitializer = new UniformInitializer();
-            _biasesInitializer = new UniformInitializer();
+            _initializerWeights = new ConstantInitializer(0.0);
+            _initializerBiases = new ConstantInitializer(0.0);
         }
 
         public NetworkLayer(string name, ActivationFunction actFunc,
-            BaseInitializer weightsInit, BaseInitializer biasesInit) : base(name)
+            Initializer weightsInit, Initializer biasesInit) : base(name)
         {
             // Constructor for BaseLayer Class 
-            LayerType = "BaseLayer";
+            LayerType = "NetworkLayer";
 
             // Set Activation Function Instance & Initializers
             _activationFunction = actFunc;
-            _weightsInitializer = weightsInit;
-            _biasesInitializer = biasesInit;
+            _initializerWeights = weightsInit;
+            _initializerBiases = biasesInit;
         }
 
         #endregion
@@ -65,10 +64,6 @@ namespace NeuralNetwork.Layers
             // Determine input,output shapes
             InputShape = PrevLayer.OutputShape;
             OutputShape = InputShape;
-
-            // Format Activations Object
-            
-
         }
 
         public virtual void GetLayerParams()
