@@ -70,7 +70,7 @@ namespace NeuralNetwork.ComputationalGraphs
 
         #endregion
 
-        public void AddTailNode (NetworkLayer newLayer)
+        public void AddTailNode (Layer newLayer)
         {
             // Add newNode to end of Compuational Graph
             Layer oldTail = _tailNode.PrevLayer;
@@ -83,7 +83,7 @@ namespace NeuralNetwork.ComputationalGraphs
             SetLayerCounter(newLayer);
         }
 
-        public void AddHeadNode (NetworkLayer newLayer)
+        public void AddHeadNode (Layer newLayer)
         {
             // Add newNode to top of Computational Graph
             Layer oldHead = _headNode.NextLayer;

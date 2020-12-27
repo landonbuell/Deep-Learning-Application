@@ -21,6 +21,12 @@ namespace NeuralNetwork.Layers
             PrevLayer = null;
         }
 
-        
+        public override void InitializeLayer()
+        {
+            // Initializer Pointer Layer
+            Initialized = true;
+        }
+
+
     }   
 }

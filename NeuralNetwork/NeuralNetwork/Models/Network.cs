@@ -18,7 +18,7 @@ namespace NeuralNetwork.Models
         public string ModelName { get; protected set; }
         public string ModelType { get; protected set; }
 
-        public int BatchSize { get; protected set; }
+        public int CurrentBatchSize { get; protected set; }
 
         protected int _layerCounter;
         protected bool _isAssembled;
@@ -94,7 +94,7 @@ namespace NeuralNetwork.Models
 
         #endregion
 
-        public Network AddLayer(NetworkLayer newLayer)
+        public Network AddLayer(Layer newLayer)
         {
             // Add New Layer to the Tail of Graph             
             _layerGraph.AddTailNode(newLayer);
@@ -103,7 +103,7 @@ namespace NeuralNetwork.Models
             return this;
         }
 
-        public NetworkLayer PopLayer(int index = -1)
+        public Layer PopLayer(int index = -1)
         {
             // Remove Layer At Index
             throw new NotImplementedException();
@@ -198,7 +198,7 @@ namespace NeuralNetwork.Models
         public void AssembleModel()
         {
             // Prepare this Model for Usage
-            BatchSize = _layerList[0].InputShape[0];
+            CurrentBatchSize = _layerList[0].InputShape[0];
             InitializeLayers();
             _isAssembled = true;
         }

@@ -42,7 +42,7 @@ namespace NeuralNetwork.Layers
 
         #endregion
       
-        public new void InitializeLayer()
+        public override void InitializeLayer()
         {
             // Determine Shapes
             InputShape = PrevLayer.OutputShape;

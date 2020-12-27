@@ -59,11 +59,9 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        public new virtual void InitializeLayer()
+        public override void InitializeLayer()
         {
-            // Determine input,output shapes
-            InputShape = PrevLayer.OutputShape;
-            OutputShape = InputShape;
+
         }
 
         public virtual void GetLayerParams()
