@@ -210,7 +210,7 @@ namespace NeuralNetwork.Models
             while (currentLayer != _layerGraph.TailNode)
             {
                 // Iterate through graph & initialize layer
-                currentLayer.InitializeLayer();
+                currentLayer.InitializeLayer();           
                 currentLayer = currentLayer.NextLayer;
             }
         }

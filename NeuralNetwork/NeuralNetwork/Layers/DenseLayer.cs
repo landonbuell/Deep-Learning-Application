@@ -73,7 +73,10 @@ namespace NeuralNetwork.Layers
         public new virtual double[] Call(double[] X)
         {
             // Call Layer w/ 1D Inputs X
-            
+
+
+            // Matrix Multiply;
+
             return X;
         }
 

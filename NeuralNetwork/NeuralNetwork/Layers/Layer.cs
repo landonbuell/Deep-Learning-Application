@@ -61,7 +61,10 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        public abstract void InitializeLayer();
+        public virtual void InitializeLayer()
+        {
+            Initialized = true;
+        }
 
         #region CallLayer
 

@@ -59,11 +59,6 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        public override void InitializeLayer()
-        {
-
-        }
-
         public virtual void GetLayerParams()
         {
             // get the Layer Params Object
