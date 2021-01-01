@@ -13,6 +13,7 @@ namespace NeuralNetwork.Models
             this.ModelType = "LinearNetworkType";
         }
 
+
         public override void ModelSummary()
         {
             // Print Summary of this model

@@ -84,6 +84,38 @@ namespace NeuralNetwork.Mathematics
             double[,] C = ArrayTools.Make2D(A);
             return MatrixProduct(C, B);
         }
+
+        public static double[,] MatrixAdd (double[,] A, double[,] B)
+        {
+            // Element-wise Addtiona of A + B
+            Debug.Assert(A.GetLength(0) == B.GetLength(0));
+            Debug.Assert(A.GetLength(1) == B.GetLength(1));
+            double[,] C = new double[A.GetLength(0), A.GetLength(1)];
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                for (int j = 0; j < A.GetLength(1); j++)
+                {
+                    C[i, j] = A[i, j] + B[i, j];
+                }
+            }
+            return C;
+        }
+
+        public static double[,] MatrixAdd(double[,] A, double[] B)
+        {
+            // Element-wise Addtion of A + B
+            Debug.Assert(A.GetLength(1) == B.Length);
+            double[,] C = new double[A.GetLength(0), A.GetLength(1)];
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                for (int j = 0; j < A.GetLength(1); j++)
+                {
+                    C[i, j] = A[i, j] + B[j];
+                }
+            }
+            return C;
+        }
+
     }
 
     public static class VectorOperations

@@ -80,6 +80,16 @@ namespace NeuralNetwork.Models
             get { return _layerGraph.GraphList; }
         }
 
+        public Layer Input
+        {
+            get { return _layerGraph.HeadNode.NextLayer; }
+        }
+
+        public Layer Output
+        {
+            get { return _layerGraph.TailNode.PrevLayer; }
+        }
+
         public Optimizer ModelOptimizer
         {
             get { return _optimizer; }

@@ -62,40 +62,40 @@ namespace NeuralNetwork.Layers
             Initialized = true;
         }
 
-        public override void GetLayerParams()
-        {
-            // get the Layer Params Object
-            throw new NotImplementedException();
-        }
-
         #region CallLayer
 
         public new virtual double[] Call(double[] X)
         {
             // Call Layer w/ 1D Inputs X
-
-
-            // Matrix Multiply;
-
-            return X;
+            double[,] X2D = ArrayTools.Make2D(X);
+            double[,] Y = Call(X2D);
+            return ArrayTools.Make1D(Y);
         }
 
         public new virtual double[,] Call(double[,] X)
         {
             // Call Layer w/ 2D Inputs X
-            return X;
+            double[,] WxTransp = LinearAlgebra.MatrixProduct(X, (double[,])_layerParameters.Weights);
+            double[,] linearActs = LinearAlgebra.MatrixAdd(WxTransp,(double[])_layerParameters.Biases);
+
+            // Set Linear Activations
+            _layerActivations.Linear = linearActs;
+            _layerActivations.Final = _activationFunction.Call(linearActs);
+
+            // Return Final Activations Array
+            return (double[,])_layerActivations.Final;
         }
 
         public new virtual double[,,] Call(double[,,] X)
         {
             // Call Layer w/ 3D Inputs X
-            throw new RankException("Rank invalid, must be <= 2");
+            throw new RankException("Rank invalid, Inputs to DenseLayer must be <= 2");
         }
 
         public new virtual double[,,,] Call(double[,,,] X)
         {
             // Call Layer w/ 4D Inputs X
-            throw new RankException("Rank invalid, must be <= 2");
+            throw new RankException("Rank invalid, Inputs to DenseLayer must be <= 2");
         }
 
         #endregion

@@ -59,10 +59,14 @@ namespace NeuralNetwork.Layers
 
         #endregion
 
-        public virtual void GetLayerParams()
+        public virtual List<Array> GetLayerParams()
         {
             // get the Layer Params Object
-            throw new NotImplementedException();
+            return new List<Array>
+            {
+                _layerParameters.Weights,
+                _layerParameters.Biases
+            };            
         }
     }
 }

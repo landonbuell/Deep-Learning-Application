@@ -25,6 +25,20 @@ namespace NeuralNetwork.Mathematics
             return B;
         }
 
+        public static double[] Make1D(double[,] A)
+        {
+            // Make 2D Array X into 1D
+            int newSize = A.GetLength(0) * A.GetLength(1);
+            double[] B = new double[newSize];
+            for (int i = 0; i < A.GetLength(0); i++)
+            {
+                for (int j = 0; j < A.GetLength(1); j++)
+                {
+                    B[i + j] = A[i, j];
+                }
+            }
+            return B;
+        }
     }
 
 }

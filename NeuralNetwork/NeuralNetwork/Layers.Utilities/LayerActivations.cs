@@ -9,8 +9,8 @@ namespace NeuralNetwork.Layers.Utilities
     {
         // Parent Class for all Layer Activation Objects
 
-        public virtual Array Linear { get; protected set; }
-        public virtual Array Final { get; protected set; }
+        public virtual Array Linear { get; set; }
+        public virtual Array Final { get; set; }
 
         public int[] Shape { get; set; }
 

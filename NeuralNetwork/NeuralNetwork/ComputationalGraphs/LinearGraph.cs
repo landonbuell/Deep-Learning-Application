@@ -11,8 +11,8 @@ namespace NeuralNetwork.ComputationalGraphs
     {
         // Linear Graph is a Double Linked List w/ Sentinel Nodes
         // Each node has exactly 1 previous and 1 next node
-        private PointerLayer _headNode = new PointerLayer("HeadNode");
-        private PointerLayer _tailNode = new PointerLayer("TailNode");
+        private readonly PointerLayer _headNode = new PointerLayer("HeadNode");
+        private readonly PointerLayer _tailNode = new PointerLayer("TailNode");
 
         #region LinearGraphConstructors
 
@@ -59,13 +59,13 @@ namespace NeuralNetwork.ComputationalGraphs
         public PointerLayer HeadNode
         {
             get { return _headNode; }
-            private set { _headNode = value; }
+            //private set { _headNode = value; }
         }
 
         public PointerLayer TailNode
         {
             get { return _tailNode; }
-            private set { _tailNode = value; }
+            //private set { _tailNode = value; }
         }
 
         #endregion
