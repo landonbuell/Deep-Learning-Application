@@ -19,9 +19,9 @@ namespace NeuralNetwork.Models
         public string ModelType { get; protected set; }
 
         public int CurrentBatchSize { get; protected set; }
+        public bool Assembled { get; protected set; }
 
         protected int _layerCounter;
-        protected bool _isAssembled;
 
         protected List<Layer> _layerList;
         protected LinearGraph _layerGraph;
@@ -35,40 +35,40 @@ namespace NeuralNetwork.Models
         public Network(string name)
         {
             // Constructor for BaseModel Class (Empty)
-            this.ModelName = name;
-            this.ModelType = "BaseNetworkType";
-            this._layerCounter = 0;
-            this._isAssembled = false;
+            ModelName = name;
+            ModelType = "BaseNetworkType";
+            _layerCounter = 0;
+            Assembled = false;
 
             // Intialize Graph & layer List for this Model
-            this._layerGraph = new LinearGraph();
-            this._layerList = new List<Layer>();
+            _layerGraph = new LinearGraph();
+            _layerList = new List<Layer>();
         }
 
         public Network(string name, LinearGraph existingGraph)
         {
             // Constructor for BaseModel Class (given Graph)
-            this.ModelName = name;
-            this.ModelType = "BaseNetworkType";
-            this._isAssembled = false;
+            ModelName = name;
+            ModelType = "BaseNetworkType";
+            Assembled = false;
 
             // Intialize Graph & layer List for this Model
-            this._layerGraph = existingGraph;
-            this._layerList = existingGraph.GraphList;
-            this._layerCounter = _layerList.Count;
+            _layerGraph = existingGraph;
+            _layerList = existingGraph.GraphList;
+            _layerCounter = _layerList.Count;
         }
 
         public Network(string name, List<NetworkLayer> exisitingLayers)
         {
             // Constructor for BaseModel Class (given Layers)
-            this.ModelName = name;
-            this.ModelType = "BaseNetworkType";
-            this._isAssembled = false;
+            ModelName = name;
+            ModelType = "BaseNetworkType";
+            Assembled = false;
 
             // Intialize Graph & layer List for this Model
-            this._layerGraph = new LinearGraph(exisitingLayers);
-            this._layerList = _layerGraph.GraphList;
-            this._layerCounter = _layerList.Count;
+            _layerGraph = new LinearGraph(exisitingLayers);
+            _layerList = _layerGraph.GraphList;
+            _layerCounter = _layerList.Count;
         }
 
         #endregion

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+
+using NeuralNetwork.Mathematics;
+using NeuralNetwork.Exceptions;
 
 namespace NeuralNetwork.Layers
 {
@@ -66,11 +70,20 @@ namespace NeuralNetwork.Layers
             Initialized = true;
         }
 
+        protected bool TestShape(Array X)
+        {
+            // Test In given shape matches Input
+            int[] shapeX = ArrayTools.GetShape(X);
+            bool shapesMatch = _shapeInput.SequenceEqual(shapeX);
+            if (shapesMatch == false) { throw new ArrayShapeException(this, shapeX); }
+            else { return true; }
+        }
+
         #region CallLayer
 
         public virtual double[] Call(double[] X)
         {
-            // Call Layer w/ 1D Inputs X
+            // Call Layer w/ 1D Inputs X    
             return X;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Text;
-using System.Transactions;
+
+
 using NeuralNetwork.Layers.Utilities;
 
 namespace NeuralNetwork.Models
@@ -10,13 +11,15 @@ namespace NeuralNetwork.Models
         public LinearNetwork(string name): base(name)
         {
             // Constructor for LinearNetwork Object
-            this.ModelType = "LinearNetworkType";
+            ModelType = "LinearNetworkType";
         }
 
 
         public override void ModelSummary()
         {
-            // Print Summary of this model
+            // Print Summary of Model to Console
+            StringBuilder outputString = new StringBuilder();
+
         }
     }
     
