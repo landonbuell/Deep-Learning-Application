@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NeuralNetwork.Layers.Utilities
 {
-    public abstract class LayerParameters
+    internal abstract class LayerParameters
     {
         // Parent Class for LayerParameters
         // All shapes are transposed
@@ -54,6 +54,8 @@ namespace NeuralNetwork.Layers.Utilities
             Biases = biasesInit.Init1D();
             Initialized = true;
         }
+
+      
     }
 
 

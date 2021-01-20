@@ -49,7 +49,8 @@ class RegressionPerceptron (Perceptron):
         self._weights = np.empty(shape=self._shapeWeights)
         self._biases = np.empty(shape=self._shapeBiases)
 
-    def Initialize ()
+    def Initialize ():
+        pass
 
 
     def Call (self, X):
