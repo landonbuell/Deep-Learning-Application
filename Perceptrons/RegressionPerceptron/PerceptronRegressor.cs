@@ -24,8 +24,7 @@ namespace RegressionPerceptron
         public override double[] Call(double[] X)
         {
             // Call perceptron with Inputs X
-            double[,] weights = _parameters.
-            double[,] WxTransp = LinearAlgebra.MatrixMultiply(X, );
+            
 
             return X;
         }

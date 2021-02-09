@@ -53,16 +53,26 @@ namespace RegressionPerceptron
 
         #endregion
 
-        public virtual double[] Call(double[] X)
+        #region CallMethods
+
+        protected virtual double[] Call(double[] X)
         {
             // Call perceptron with Inputs X
             return X;
         }
 
-        public virtual double[,] Call(double[,] X)
+        protected virtual double[,] Call(double[,] X)
         {
             // Call perceptron with Inputs X
             return X;
+        }
+
+        #endregion
+
+        public void Fit(double[,] X, double[] Y)
+        {
+            // Fit Perceptron with data
+            double output = Call(X);
         }
 
 

@@ -25,7 +25,7 @@ namespace RegressionPerceptron
 
             // Create Perceptron
             PerceptronRegressor JARVIS = new PerceptronRegressor("JARVIS", 3);
-
+            JARVIS
 
 
         }
