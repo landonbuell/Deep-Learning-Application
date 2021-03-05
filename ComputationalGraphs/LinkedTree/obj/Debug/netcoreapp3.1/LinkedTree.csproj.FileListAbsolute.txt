@@ -11,3 +11,16 @@ C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\L
 C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.dll
 C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.pdb
 C:\Users\Landon\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.genruntimeconfig.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.exe
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.deps.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.runtimeconfig.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.runtimeconfig.dev.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.dll
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\bin\Debug\netcoreapp3.1\LinkedTree.pdb
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.csprojAssemblyReference.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.AssemblyInfoInputs.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.AssemblyInfo.cs
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.csproj.CoreCompileInputs.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.dll
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.pdb
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\LinkedTree\obj\Debug\netcoreapp3.1\LinkedTree.genruntimeconfig.cache

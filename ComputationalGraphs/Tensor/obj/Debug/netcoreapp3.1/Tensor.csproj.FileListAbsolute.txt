@@ -1,0 +1,13 @@
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.exe
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.deps.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.runtimeconfig.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.runtimeconfig.dev.json
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.dll
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\bin\Debug\netcoreapp3.1\Tensor.pdb
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.csprojAssemblyReference.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.AssemblyInfoInputs.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.AssemblyInfo.cs
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.csproj.CoreCompileInputs.cache
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.dll
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.pdb
+C:\Users\lando\Documents\GitHub\Deep-Learning-Application\ComputationalGraphs\Tensor\obj\Debug\netcoreapp3.1\Tensor.genruntimeconfig.cache

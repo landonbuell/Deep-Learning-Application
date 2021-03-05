@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj": {}
+    "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\Tensor\\Tensor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj": {
+    "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\Tensor\\Tensor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj",
-        "projectName": "LinkedGraph",
-        "projectPath": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\LinkedGraph.csproj",
+        "projectUniqueName": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\Tensor\\Tensor.csproj",
+        "projectName": "Tensor",
+        "projectPath": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\Tensor\\Tensor.csproj",
         "packagesPath": "C:\\Users\\lando\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\LinkedGraph\\obj\\",
+        "outputPath": "C:\\Users\\lando\\Documents\\GitHub\\Deep-Learning-Application\\ComputationalGraphs\\Tensor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lando\\AppData\\Roaming\\NuGet\\NuGet.Config",
