@@ -20,7 +20,7 @@ namespace NeuralNetwork.Layers
             // Constructor for Linear Dense Layer Class
             LayerType = "Dense";
             Nodes = nodes;
-            _layerActivations = new Activations2D();  
+            _layerActivations = new LeyActivations2D();  
         }
 
         public DenseLayer(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)

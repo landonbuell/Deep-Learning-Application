@@ -4,61 +4,36 @@ using System.Text;
 
 namespace NeuralNetwork.Layers.Utilities
 {
-    internal abstract class LayerParameters
-    {
+   public abstract class LayerParameters
+    { 
         // Parent Class for LayerParameters
         // All shapes are transposed
-        protected int[] _shapeWeights;
-        protected int[] _shapeBiases;
+        protected int[] _shapeWeights0;
+        protected int[] _shapeWeights1;
 
-        public virtual Array Weights { get; protected set; }
-        public virtual Array Biases { get; protected set; }
+        protected Initializer _initWeights0;
+        protected Initializer _initWeights1;
 
-        public bool Initialized { get; protected set; }
+        protected Array _weights0;
+        protected Array _weights1;
         
-
-        public LayerParameters(int[] shapeWeights, int[] shapeBiases)
+        public bool Initialized { get; set; }
+        
+       
+        public LayerParameters(int[] shapeW0, int[] shapeW1, Initializer initW0, Initializer initW1)
         {
-            // Constructor for LayerParameters Instance
-            _shapeWeights = shapeWeights;
-            _shapeBiases = shapeBiases;
-            Initialized = false;
+            // Constructor for 
+            _shapeWeights0 = shapeW0;
+            _shapeWeights1 = shapeW1;
+
         }
 
-        public virtual void InitializeParameters(Initializer weightsInit, Initializer biasesInit)
+        protected virtual void Initialize()
         {
-            // Initializer Parameters
-            Weights = Array.CreateInstance(typeof(Double), _shapeWeights);
-            Biases = Array.CreateInstance(typeof(Double), _shapeBiases);
+            // Initialize Weights0 (bias)
+            _initWeights0.Shape = _shapeWeights0;
+            _initWeights1.Shape = _shapeWeights1;
             Initialized = true;
-        }
-
+        }  
     }
-
-    internal class DenseParameters : LayerParameters
-    {
-        // Parameters for Dense Layer
-
-        public new double[,] Weights { get; protected set; }
-        public new double[] Biases { get; protected set; }
-
-        public DenseParameters(int[] shapeWeights, int[] shapeBiases) : base(shapeWeights, shapeBiases)
-        {
-            // Constructor for Dense Layer Parameters
-        }
-
-        public override void InitializeParameters(Initializer weightsInit, Initializer biasesInit)
-        {
-            // Initialize Weight & Bias Arrays
-            Weights = weightsInit.Init2D();
-            Biases = biasesInit.Init1D();
-            Initialized = true;
-        }
-
-      
-    }
-
-
-   
-
 }

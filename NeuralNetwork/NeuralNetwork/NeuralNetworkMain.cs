@@ -11,13 +11,16 @@ namespace NeuralNetwork
     {
         static void Main(string[] args)
         {
+
+            int[] inputShape = new int[] { 2, 4 };
+
             LinearNetwork NetworkA = new LinearNetwork("NetworkA");
-            NetworkA.AddLayer(new InputLayer("Input", new int[] {2, 4}));            
+            NetworkA.AddLayer(new InputLayer("Input", inputShape));            
             NetworkA.AddLayer(new DenseLayer("Dense1", 8));
             NetworkA.AddLayer(new DenseLayer("Dense2", 10));
             NetworkA.AddLayer(new OutputLayer("Output", 2));
+            
             NetworkA.AssembleModel();
-
             NetworkA.ModelSummary();
 
 

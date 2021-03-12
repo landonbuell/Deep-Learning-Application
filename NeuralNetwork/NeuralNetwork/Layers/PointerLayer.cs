@@ -13,16 +13,11 @@ namespace NeuralNetwork.Layers
         // Pointer Layer Only Points to another layer
         // Is used as Head/Tail Nodes in Layer Graph
 
-        public PointerLayer (string name) : base(name)
+        public PointerLayer(string name = " ", Layer next = null, Layer prev = null) : base(name,next,prev)
         {
             // Constructor for PointerLayer
-            LayerType = "PointerLayer";
-            NextLayer = null;
-            PrevLayer = null;
+
+            // Empty???
         }
-
-
-
-
     }   
 }

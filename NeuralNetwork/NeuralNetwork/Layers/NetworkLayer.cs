@@ -23,6 +23,12 @@ namespace NeuralNetwork.Layers
 
         #region LayerConstructors
 
+        public NetworkLayer(string name = " ", Layer next = null, Layer prev = null) :base(name,next,prev)
+        {
+            // Constructor for NetworkLayer Class (Given only name)
+            LayerType = "NetworkLayer";
+        }
+
         public NetworkLayer(string name) : base(name)
         {
             // Constructor for BaseLayer Class (Given only name)

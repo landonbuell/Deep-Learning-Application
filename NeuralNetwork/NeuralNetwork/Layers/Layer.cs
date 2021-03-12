@@ -24,11 +24,20 @@ namespace NeuralNetwork.Layers
 
         #region LayerConstructors
 
-        public Layer(string name)
+        public Layer(string name = " ", Layer next = null, Layer prev = null)
         {
             // Constructor for Base Layer Type
             LayerName = name;
-            LayerType = "Layer";           
+            LayerType = "Layer";
+
+            _layerNext = next;
+            _layerPrev = prev;
+
+            _shapeInput = null;
+            _shapeOutput = null;
+
+            LayerIndex = -1;
+            Initialized = false;            
         }
 
         #endregion
@@ -39,14 +48,14 @@ namespace NeuralNetwork.Layers
         {
             // Get or Set Next Layer
             get { return _layerNext; }
-            set { _layerNext = value; }
+            internal set { _layerNext = value; }
         }
 
         public Layer PrevLayer
         {
             // Get or Set Previous Layer
             get { return _layerPrev; }
-            set { _layerPrev = value; }
+            internal set { _layerPrev = value; }
         }
 
         public int[] InputShape
@@ -67,6 +76,7 @@ namespace NeuralNetwork.Layers
 
         public virtual void InitializeLayer()
         {
+            // Initialize layer for Network
             Initialized = true;
         }
 
@@ -75,8 +85,10 @@ namespace NeuralNetwork.Layers
             // Test In given shape matches Input
             int[] shapeX = ArrayTools.GetShape(X);
             bool shapesMatch = _shapeInput.SequenceEqual(shapeX);
-            if (shapesMatch == false) { throw new ArrayShapeException(this, shapeX); }
-            else { return true; }
+            if (shapesMatch == false) 
+                throw new ArrayShapeException(this, shapeX);
+            else 
+                return true; 
         }
 
         #region CallLayer
