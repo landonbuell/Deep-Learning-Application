@@ -11,14 +11,13 @@ namespace NeuralNetwork.Layers
         // All NetworkLayers have Weights, Biases, Activations
 
         #region LayerAttributes
-
+       
+        protected LayerActivations _activations;
+        protected LayerParameters _parameters;
         protected ActivationFunction _activationFunction;
-        protected LayerActivations _layerActivations;
-        protected LayerParameters _layerParameters;
 
-        protected Initializer _initializerWeights;
-        protected Initializer _initializerBiases;
-
+        protected Initializer _initWeights0;
+        protected Initializer _initWeights1;
         #endregion
 
         #region LayerConstructors
@@ -27,52 +26,45 @@ namespace NeuralNetwork.Layers
         {
             // Constructor for NetworkLayer Class (Given only name)
             LayerType = "NetworkLayer";
+            
         }
 
-        public NetworkLayer(string name) : base(name)
+        public NetworkLayer(string name = " ", Layer next = null, Layer prev = null,
+            ActivationFunction actFunc = null, Initializer initW0 = null, Initializer initW1 = null) : base(name, next, prev)
         {
-            // Constructor for BaseLayer Class (Given only name)
+            // Constructor for NetworkLayer Class (Given only name)
             LayerType = "NetworkLayer";
 
-            // Set Activation Function Instance & Initializers
-            _activationFunction = new Identity();
-            _initializerWeights = new ConstantInitializer(0.0);
-            _initializerBiases = new ConstantInitializer(0.0);
+            // Set Activation Function
+            if (actFunc == null)
+                _activationFunction = new Identity();
+            else
+                _activationFunction = actFunc;
+
+            // Set Bias Initializer
+            if (initW0 == null)
+                _initWeights0 = new ConstantInitializer(0.0f);
+            else
+                _initWeights0 = initW0;
+
+            // Set Weights Initializer
+            if (initW1 == null)
+                _initWeights0 = new ConstantInitializer(0.0f);
+            else
+                _initWeights1 = initW1;
+
+
+            // Set Bias Regularizer
+
+            // Set Weight Regularizer
+
         }
-
-        public NetworkLayer(string name, ActivationFunction actFunc) : base(name)
-        {
-            // Constructor for BaseLayer Class 
-            LayerType = "NetworkLayer";
-
-            // Set Activation Function Instance & Initializers
-            _activationFunction = actFunc;
-            _initializerWeights = new ConstantInitializer(0.0);
-            _initializerBiases = new ConstantInitializer(0.0);
-        }
-
-        public NetworkLayer(string name, ActivationFunction actFunc,
-            Initializer weightsInit, Initializer biasesInit) : base(name)
-        {
-            // Constructor for BaseLayer Class 
-            LayerType = "NetworkLayer";
-
-            // Set Activation Function Instance & Initializers
-            _activationFunction = actFunc;
-            _initializerWeights = weightsInit;
-            _initializerBiases = biasesInit;
-        }
-
         #endregion
 
         public virtual List<Array> GetLayerParams()
         {
             // get the Layer Params Object
-            return new List<Array>
-            {
-                _layerParameters.Weights,
-                _layerParameters.Biases
-            };            
+            throw new NotImplementedException();
         }
     }
 }

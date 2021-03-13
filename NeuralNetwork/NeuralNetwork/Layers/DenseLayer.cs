@@ -11,52 +11,49 @@ namespace NeuralNetwork.Layers
     public class DenseLayer : NetworkLayer
     {
 
-        public int Nodes { get; protected set; }
+        public int Neurons { get; protected set; }
 
         #region DenseConstructors
 
-        public DenseLayer(string name, int nodes) : base(name)
+        public DenseLayer(int neurons, string name = " ", Layer next = null, Layer prev = null) : base(name,next,prev)
         {
-            // Constructor for Linear Dense Layer Class
-            LayerType = "Dense";
-            Nodes = nodes;
-            _layerActivations = new LeyActivations2D();  
+            LayerType = "DenseLayer";
+            Neurons = neurons;
+
+            _parameters = new DenseParameters();
+            _activations = new LayerActivations2D();
+            _activationFunction = new Identity();
+
+            // Set Weight + Bias Initializers
+            _initWeights0 = new ConstantInitializer(0.0f);
+            _initWeights0 = new ConstantInitializer(0.0f);
+
+            // Set Weight + Bias Regularizer?
         }
 
-        public DenseLayer(string name, int nodes, ActivationFunction actFunc) : base(name,actFunc)
+        public DenseLayer(int neurons, ActivationFunction actFunc = null, Initializer initW0 = null, Initializer initW1 = null,
+            string name = " ", Layer next = null, Layer prev = null) : base(name, next, prev, actFunc, initW0, initW1)
         {
-            // Constructor for Linear Dense Layer Class
-            LayerType = "Dense";
-            Nodes = nodes;
-            _layerActivations = new Activations2D();
+            LayerType = "DenseLayer";
+            Neurons = neurons;
+
+            _parameters = new DenseParameters();
+            _activations = new LayerActivations2D();
         }
 
-        public DenseLayer(string name, int nodes, ActivationFunction actFunc,
-            Initializer weightsInit , Initializer biasesInit) : base(name,actFunc,weightsInit,biasesInit)
-        {
-            // Constructor for Linear Dense Layer Class
-            LayerType = "Dense";
-            Nodes = nodes;
-            _layerActivations = new Activations2D();
-        }
+
+
 
         #endregion
-      
+
         public override void InitializeLayer()
         {
             // Determine Shapes
-            InputShape = PrevLayer.OutputShape;
-            OutputShape = new int[2] { InputShape[0], Nodes };
-
+            
             // Get Shapes of Layer Parameters
-            int[] shapeWeights = new int[] { InputShape[1], Nodes};
-            int[] shapeBiases = new int[] { Nodes };
-            _initializerWeights.Shape = shapeWeights;
-            _initializerBiases.Shape = shapeBiases;
-
+            
             // Initialize Layer Parameters
-            _layerParameters = new DenseParameters(shapeWeights,shapeBiases);
-            _layerParameters.InitializeParameters(_initializerWeights, _initializerBiases);
+            
 
             // Housekeeping 
             Initialized = true;
@@ -64,40 +61,35 @@ namespace NeuralNetwork.Layers
 
         #region CallLayer
 
-        public new virtual double[] Call(double[] X)
+        public new virtual float[] Call(float[] X)
         {
             // Call Layer w/ 1D Inputs X
-            double[,] X2D = ArrayTools.Make2D(X);
-            double[,] Y = Call(X2D);
-            return ArrayTools.Make1D(Y);
+            return X;
         }
 
-        public new virtual double[,] Call(double[,] X)
+        public new virtual float[,] Call(float[,] X)
         {
             // Call Layer w/ 2D Inputs X
-            double[,] WxTransp = LinearAlgebra.MatrixProduct(X, (double[,])_layerParameters.Weights);
-            double[,] linearActs = LinearAlgebra.MatrixAdd(WxTransp,(double[])_layerParameters.Biases);
-
-            // Set Linear Activations
-            _layerActivations.Linear = linearActs;
-            _layerActivations.Final = _activationFunction.Call(linearActs);
-
-            // Return Final Activations Array
-            return (double[,])_layerActivations.Final;
+            return X;
         }
 
-        public new virtual double[,,] Call(double[,,] X)
+        public new virtual float[,,] Call(float[,,] X)
         {
             // Call Layer w/ 3D Inputs X
             throw new RankException("Rank invalid, Inputs to DenseLayer must be <= 2");
         }
 
-        public new virtual double[,,,] Call(double[,,,] X)
+        public new virtual float[,,,] Call(float[,,,] X)
         {
             // Call Layer w/ 4D Inputs X
             throw new RankException("Rank invalid, Inputs to DenseLayer must be <= 2");
         }
 
         #endregion
+
+        protected class DenseParameters : LayerParameters
+        {
+
+        }
     }
 }

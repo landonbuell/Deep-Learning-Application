@@ -8,6 +8,12 @@ using NeuralNetwork.Exceptions;
 
 namespace NeuralNetwork.Layers
 {
+    public interface ILayer
+    {
+        // Layer Interface
+        
+    }
+
     public abstract class Layer
     {
         protected Layer _layerNext;
@@ -93,25 +99,25 @@ namespace NeuralNetwork.Layers
 
         #region CallLayer
 
-        public virtual double[] Call(double[] X)
+        public virtual float[] Call(float[] X)
         {
             // Call Layer w/ 1D Inputs X    
             return X;
         }
 
-        public virtual double[,] Call(double[,] X)
+        public virtual float[,] Call(float[,] X)
         {
             // Call Layer w/ 2D Inputs X
             return X;
         }
 
-        public virtual double[,,] Call(double[,,] X)
+        public virtual float[,,] Call(float[,,] X)
         {
             // Call Layer w/ 3D Inputs X
             return X;
         }
 
-        public virtual double[,,,] Call(double[,,,] X)
+        public virtual float[,,,] Call(float[,,,] X)
         {
             // Call Layer w/ 4D Inputs X
             return X;

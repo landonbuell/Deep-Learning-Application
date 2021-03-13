@@ -15,25 +15,25 @@ namespace NeuralNetwork.Layers.Utilities
 
         #region CallActivationFunction
 
-        public virtual double[] Call(double[] X)
+        public virtual float[] Call(float[] X)
         {
             // Call Function w/ 1D Inputs X
             return X;
         }
 
-        public virtual double[,] Call(double[,] X)
+        public virtual float[,] Call(float[,] X)
         {
             // Call Function w/ 2D Inputs X
             return X;
         }
 
-        public virtual double[,,] Call(double[,,] X)
+        public virtual float[,,] Call(float[,,] X)
         {
             // Call Function w/ 3D Inputs X
             return X;
         }
 
-        public virtual double[,,,] Call(double[,,,] X)
+        public virtual float[,,,] Call(float[,,,] X)
         {
             // Call Function w/ 4D Inputs X
             return X;
@@ -51,6 +51,29 @@ namespace NeuralNetwork.Layers.Utilities
     {
         // Rectified Linear Unit Activation Function
 
+        public override float[] Call(float[] X)
+        {
+            // Call Function w/ 1D Inputs X
+            return X;
+        }
+
+        public override float[,] Call(float[,] X)
+        {
+            // Call Function w/ 2D Inputs X
+            return X;
+        }
+
+        public override float[,,] Call(float[,,] X)
+        {
+            // Call Function w/ 3D Inputs X
+            return X;
+        }
+
+        public override float[,,,] Call(float[,,,] X)
+        {
+            // Call Function w/ 4D Inputs X
+            return X;
+        }
 
     }
 

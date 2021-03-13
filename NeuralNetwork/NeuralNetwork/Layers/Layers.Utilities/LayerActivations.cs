@@ -12,6 +12,24 @@ namespace NeuralNetwork.Layers.Utilities
         protected Array _final;
         protected int[] _shape;
         protected int _rank;
+
+        public int[] Shape
+        {
+            // Get Shape of these activations
+            get { return _shape; }
+            internal set 
+            {
+                _shape = value;
+                _rank = value.Length;
+            }
+        }
+
+        public int GetRank 
+        { 
+            // Get Number of Axes in activations
+            get { return _rank; }
+        }
+
     }
 
     internal class LayerActivations1D : LayerActivations
@@ -59,6 +77,12 @@ namespace NeuralNetwork.Layers.Utilities
         protected new float[,] _affine;
         protected new float[,] _final;
 
+        internal LayerActivations2D() : base()
+        {
+            // Constructor for 2D Layer Activations
+            
+        }
+
         internal LayerActivations2D(int[] shape) : base()
         {
             // Constructor for 2D Layer Activations
@@ -84,9 +108,7 @@ namespace NeuralNetwork.Layers.Utilities
             internal set { _final = value; }
         }
 
-        public int[] GetShape { get { return _shape; } }
-
-        public int GetRank { get { return _rank; } }
+       
     }
 
     internal class LayerActivations3D : LayerActivations
@@ -121,10 +143,6 @@ namespace NeuralNetwork.Layers.Utilities
             get { return _final; }
             internal set { _final = value; }
         }
-
-        public int[] GetShape { get { return _shape; } }
-
-        public int GetRank { get { return _rank; } }
     }
 
     internal class LayerActivations4D : LayerActivations
@@ -158,9 +176,5 @@ namespace NeuralNetwork.Layers.Utilities
             get { return _final; }
             internal set { _final = value; }
         }
-
-        public int[] GetShape { get { return _shape; } }
-
-        public int GetRank { get { return _rank; } }
     }
 }

@@ -18,8 +18,7 @@ namespace NeuralNetwork.Layers.Utilities
         protected Array _weights1;
         
         public bool Initialized { get; set; }
-        
-       
+              
         public LayerParameters(int[] shapeW0, int[] shapeW1, Initializer initW0, Initializer initW1)
         {
             // Constructor for 
@@ -36,4 +35,7 @@ namespace NeuralNetwork.Layers.Utilities
             Initialized = true;
         }  
     }
+
+
+    
 }
